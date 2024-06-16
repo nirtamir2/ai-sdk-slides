@@ -111,9 +111,11 @@ monacoRunAdditionalDeps:
 ```ts {monaco-run}
 import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
+import {env} from "./env
 
  const result = await generateText({
     model: google("models/gemini-1.5-flash-latest"),
+    apiKey: env.GOOGLE_GENERATIVE_AI_API_KEY
     prompt: "Tell me a joke.",
   });
 
