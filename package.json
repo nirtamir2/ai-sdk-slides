@@ -1,0 +1,18 @@
+{
+  "name": "ai-sdk-slides",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@ai-sdk/google": "^0.0.21",
+    "@slidev/cli": "^0.49.10",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "ai": "^3.1.36",
+    "vue": "^3.4.27"
+  }
+}
