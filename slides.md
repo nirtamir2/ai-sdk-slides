@@ -278,6 +278,44 @@ console.log(result.text);
 ```
 
 ---
+level: 2
+monacoRunAdditionalDeps:
+- ai
+- @ai-sdk/google
+- ./env
+---
+
+# AI SDK Image example
+
+```ts {monaco-run} {autorun:false}
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { generateText } from "ai";
+import { env } from "./env";
+
+const google = createGoogleGenerativeAI({
+  apiKey: env.GOOGLE_GENERATIVE_AI_API_KEY,
+});
+
+const result = await generateText({
+  model: google("models/gemini-1.5-flash-latest"),
+  messages: [{
+      role: 'user',
+      content: [
+        { type: 'text', text: 'Describe the image in detail.' },
+        { type: 'image',  image: 'https://www.nirtamir.com/_astro/portrait.9b-_4A6X_bepz7.webp' },
+      ]
+    }],
+});
+
+console.log(result.text);
+
+```
+
+<div v-click class="absolute top-36 right-14 size-64">
+ <img src="https://www.nirtamir.com/_astro/portrait.9b-_4A6X_bepz7.webp" alt="portrait" />
+</div>
+
+---
 layout: image-right
 image: https://cover.sli.dev
 ---
