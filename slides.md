@@ -741,14 +741,10 @@ database "MySql" {
 [Learn More](https://sli.dev/guide/syntax.html#diagrams)
 
 ---
-
 foo: bar
 dragPos:
+  square: 56,194,345,345
 square: 691,32,167,\_,-16
-
----
-dragPos:
-  square: NaN,NaN,NaN,NaN
 ---
 
 # Draggable Elements
@@ -791,10 +787,8 @@ Double-click on the draggable elements to edit their positions.
 <v-drag-arrow pos="67,452,253,46" two-way op70 />
 
 ---
-
 src: ./pages/multiple-entries.md
 hide: false
-
 ---
 
 
@@ -830,21 +824,27 @@ console.log(
 ```
 
 ---
-
-layout: center
-class: text-center
-
----
-
-# Learn More
-
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
-
+layout: end
 ---
 
 # Thank you!
 
+- <mdi-web /> [nirtamir.com](https://nirtamir.com)
+- <mdi-github /> [@nirtamir2](https://github.com/nirtamir2)
+- <mdi-twitter /> [@NirTamir](https://twitter.com/NirTamir)
+- <mdi-linkedin /> [@nirtamir2](https://linkedin.com/in/nirtamir2)
+- <mdi-presentation /> [Slides](https://github.com/nirtamir2)
+- <mdi-blog /> [Blog post](https://nirtamir.com)
+
 ---
+
+# Further Reading
+- Security
+- Rate limits
+- Prompt engineering
+- Langchain
+- RAG
+- Agents
 
 ---
 transition: slide-up
