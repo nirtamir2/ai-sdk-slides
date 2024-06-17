@@ -42,26 +42,11 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
-layout: two-cols
-layoutClass: gap-16
-hideInToc: true
----
 
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
+<Toc minDepth="1" maxDepth="2"></Toc>
 
 ---
+title: About me
 layout: image-right
 image: ./nirtamir.png
 ---
@@ -79,6 +64,15 @@ image: ./nirtamir.png
 
 ---
 transition: fade-out
+layout: quote
+class: text-center text-balance
+---
+
+# You don't need to be a Data Scientist to be an AI Engineer
+
+---
+transition: fade-out
+level: 2
 ---
 # AI Engineer
 
@@ -86,14 +80,22 @@ transition: fade-out
 
 ![Swyx AI engineer](swyx-ai-engineer.jpeg)
 
-We are not data scientists, we are AI engineers
-
 High level - in the right side of the API
 
 <!--
 The webpage describes the rise of a new role called the "AI Engineer" - software engineers who specialize in applying AI through tools and APIs, rather than training models. This new discipline will be the highest-demand engineering job of the decade, as AI Engineers leverage both human-written and AI-generated code to build innovative AI-powered applications.
 -->
 
+---
+layout: cover
+background: ./cruise.png
+---
+
+# My journey
+
+<!--
+I travel the world recently, and took a cruise to the USA for the first time. In the cruise there is no internet (the internet costs more than the cruise). No Google. So I use open Ollama to have ChatGPT like access offline. It help me a lot in the planning of the trip.
+-->
 
 ---
 layout: cover
