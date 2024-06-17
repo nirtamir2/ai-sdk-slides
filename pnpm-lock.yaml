@@ -20,6 +20,9 @@ dependencies:
   ai:
     specifier: ^3.1.36
     version: 3.1.36(react@18.3.1)(solid-js@1.8.17)(svelte@4.2.18)(vue@3.4.29)(zod@3.23.8)
+  ollama:
+    specifier: ^0.5.2
+    version: 0.5.2
   vue:
     specifier: ^3.4.27
     version: 3.4.29(typescript@5.4.5)
@@ -4511,6 +4514,12 @@ packages:
     resolution: {integrity: sha512-zuHHiGTYTA1sYJ/wZN+t5HKZaH23i4yI1HMwbuXm24Nid7Dv0KcuRlKoNKS9UNfAVSBlnGLcuQrnOKWOZoEGaw==}
     dev: false
 
+  /ollama@0.5.2:
+    resolution: {integrity: sha512-nH9WEU8lGxX2RhTH9TukjwrQBlyoprIh8wIGMfFlprgzzJgAr+MFFmHzCt7BZt4SMFMXVwM2xnKrfshfHkBLyQ==}
+    dependencies:
+      whatwg-fetch: 3.6.20
+    dev: false
+
   /on-finished@2.3.0:
     resolution: {integrity: sha512-ikqdkGAAyf/X/gPhXGvfgAytDZtDbr+bkNUJ0N9h5MI/dmdgCs3l6hoHrcUv41sRKew3jIwrp4qQDXiK99Utww==}
     engines: {node: '>= 0.8'}
@@ -5835,6 +5844,10 @@ packages:
 
   /webpack-virtual-modules@0.6.2:
     resolution: {integrity: sha512-66/V2i5hQanC51vBQKPH4aI8NMAcBW59FVBs+rC7eGHupMyfn34q7rZIE+ETlJ+XTevqfUhVVBgSUNSW2flEUQ==}
+    dev: false
+
+  /whatwg-fetch@3.6.20:
+    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
     dev: false
 
   /which@2.0.2:

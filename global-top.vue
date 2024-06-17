@@ -3,3 +3,9 @@
     <a href="https://nirtamir.com">nirtamir.com</a>
   </footer>
 </template>
+<style>
+.slidev-runner-output {
+  overflow: auto;
+  max-height: 200px;
+}
+</style>

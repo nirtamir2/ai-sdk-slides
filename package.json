@@ -13,6 +13,7 @@
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
     "ai": "^3.1.36",
+    "ollama": "^0.5.2",
     "vue": "^3.4.27"
   },
   "devDependencies": {

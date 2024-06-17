@@ -22,8 +22,8 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/guide/syntax#mdc-syntax
 mdc: true
+hideInToc: true
 ---
-
 # Adding AI Capabilities to React Apps with Vercel AI SDK
 
 <div class="pt-12">
@@ -47,10 +47,43 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
+layout: two-cols
+layoutClass: gap-16
+hideInToc: true
+---
 
-## transition: fade-out
+# Table of contents
 
+You can use the `Toc` component to generate a table of contents for your slides:
+
+```html
+<Toc minDepth="1" maxDepth="1"></Toc>
+```
+
+The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
+
+::right::
+
+<Toc v-click minDepth="1" maxDepth="2"></Toc>
+
+---
+layout: image-right
+image: ./nirtamir.png
+---
+
+# Nir Tamir 
+
+- Senior Frontend developer
+- Work at my own company helping early stage startups
+- Loves open source and tooling
+- [https://nirtamir.com](https://nirtamir.com)
+
+---
+transition: fade-out
+---
 # AI Engineer
+
+<a href="https://www.latent.space/p/ai-engineer">The Rise of the AI Engineer</a>
 
 ![Swyx AI engineer](swyx-ai-engineer.jpeg)
 
@@ -58,15 +91,13 @@ We are not data scientists, we are AI engineers
 
 High level - in the right side of the API
 
-<a href="https://www.latent.space/p/ai-engineer">The Rise of the AI Engineer</a>
-
 <!--
 The webpage describes the rise of a new role called the "AI Engineer" - software engineers who specialize in applying AI through tools and APIs, rather than training models. This new discipline will be the highest-demand engineering job of the decade, as AI Engineers leverage both human-written and AI-generated code to build innovative AI-powered applications.
 -->
 
 ---
+hide: true
 transition: slide-up
-level: 2
 ---
 
 # Glossary
@@ -92,11 +123,145 @@ Retrieval-Augmented Generation (RAG) is the process of optimizing the output of 
 -->
 
 ---
+layout: cover
+background: ./ollama.png
+title: Ollama
+image: ./ollama.png
+---
+# Ollama
 
+Run open source AI models locally
+
+---
+level: 2
+layout: image-right
+image: ./ollama.png
+layoutClass: gap-16
+---
+# Ollama
+
+https://ollama.com/
+
+- Enable running open source AI models locally
+- Works offline
+- Open source https://github.com/ollama/ollama
+- Ollama CLI
+- ChatGPT like UI https://github.com/open-webui/open-webui
+- REST API
+- Ollama SDK
+::right::
+
+![Ollama](ollama.png)
+
+<!-- http://localhost:3080/ to open ollama web ui --> 
+
+---
+level: 2
+---
+# Calling Ollama via REST API
+
+It has the same structure as OpenAI API hosted at http://localhost:11434
+
+```js {monaco-run} {autorun:false}
+const response = await fetch("http://localhost:11434/v1/chat/completions", {
+  method: "POST",
+  body: JSON.stringify({
+    model: "llama3",
+    messages: [
+      { role: "system", content: "You are a helpful assistant."},
+      { role: "user", content: "Hello!"}
+    ]}),
+});
+const data = await response.json();
+console.log(data);
+```
+
+
+---
+level: 2
+---
+# Calling Ollama via SDK
+https://github.com/ollama/ollama-js
+````md magic-move
+```js
+import ollama from 'ollama'
+
+const response = await ollama.chat({
+  model: 'llama3',
+  messages: [{ role: 'user', content: 'Why is the sky blue?' }],
+})
+console.log(response.message.content)
+```
+
+```js
+import ollama from 'ollama'
+
+const response = await ollama.chat({
+  model: 'llama3',
+  messages: [{ role: 'user', content: 'Why is the sky blue?' }],
+  stream: true,
+})
+for await (const part of response) {
+  console.log(part.message.content)
+}
+```
+````
+
+
+---
+level: 3
+monacoRunAdditionalDeps:
+- ollama
+
+---
+# Calling Ollama via SDK
+https://github.com/ollama/ollama-js
+```js {monaco-run} {autorun:false}
+import ollama from 'ollama/browser'
+
+const response = await ollama.chat({
+  model: 'llama3',
+  messages: [{ role: 'user', content: 'Why is the sky blue?' }],
+})
+console.log(response.message.content)
+```
+---
+level: 3
+monacoRunAdditionalDeps:
+- ollama
+
+---
+# Calling Ollama via SDK Streaming
+https://github.com/ollama/ollama-js
+```js {monaco-run} {autorun:false}
+import ollama from 'ollama/browser'
+
+const response = await ollama.chat({
+  model: 'llama3',
+  messages: [{ role: 'user', content: 'Why is the sky blue?' }],
+  stream: true,
+})
+for await (const part of response) {
+  console.log(part.message.content)
+}
+```
+
+---
+layout: center
+class: text-center
+---
 # AI SDK
 
+https://sdk.vercel.ai
+
+---
+level: 2
+---
+
+# Getting started with Google Gemini AI
+
 ```bash
-pnpm add ai @ai-sdk/google
+pnpm add @ai-sdk/google
 ```
 
 Create `.env.local` file with your [Google API key](https://aistudio.google.com/app/apikey)
@@ -106,13 +271,14 @@ GOOGLE_GENERATIVE_AI_API_KEY="YOUR_KEY"
 ```
 
 ---
+level: 2
 monacoRunAdditionalDeps:
 - ai
 - @ai-sdk/google
 - ./env
 ---
 
-# First example
+# AI SDK example
 
 ```ts {monaco-run} {autorun:false}
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
@@ -131,25 +297,6 @@ const result = await generateText({
 
 console.log(result.text);
 ```
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
 
 ---
 layout: image-right
@@ -582,6 +729,9 @@ foo: bar
 dragPos:
 square: 691,32,167,\_,-16
 
+---
+dragPos:
+  square: NaN,NaN,NaN,NaN
 ---
 
 # Draggable Elements
