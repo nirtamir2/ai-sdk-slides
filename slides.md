@@ -19,6 +19,7 @@ transition: slide-left
 mdc: true
 hideInToc: true
 ---
+
 # Adding AI Capabilities to React Apps with Vercel AI SDK
 
 <div class="pt-12">
@@ -38,7 +39,11 @@ hideInToc: true
 </div>
 
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+
+I'm exciting to be here and talk in JavaScript Israel meetup.
+The subject of AI is very new and it brings a lot of new ideas and possibilities.
+Nowadays we can build things that we wouldn't believe possible in the past with the power of AI.
+It's defenatelly a revolution. I'm goint to speak about how to add AI capabilities to your app practically.
 -->
 
 ---
@@ -70,6 +75,8 @@ class: text-center text-balance
 
 # You don't need to be a Data Scientist to be an AI Engineer
 
+<!-- First, don't worry. You don't need to be a Data Scientist to be an AI Engineer.  -->
+
 ---
 transition: fade-out
 level: 2
@@ -83,6 +90,9 @@ level: 2
 High level - in the right side of the API
 
 <!--
+This graph shows what exactly is an AI Engineer. It basically sits in the other side of the API. Someone already train the AI model, and he is using it to do the work. He tie all the things together and using the high level building blocks. No need to train data. Just call models and get the results.
+
+
 The webpage describes the rise of a new role called the "AI Engineer" - software engineers who specialize in applying AI through tools and APIs, rather than training models. This new discipline will be the highest-demand engineering job of the decade, as AI Engineers leverage both human-written and AI-generated code to build innovative AI-powered applications.
 -->
 
@@ -94,7 +104,7 @@ background: ./cruise.png
 # My journey
 
 <!--
-I travel the world recently, and took a cruise to the USA for the first time. In the cruise there is no internet (the internet costs more than the cruise). No Google. So I use open Ollama to have ChatGPT like access offline. It help me a lot in the planning of the trip.
+I travel the world recently, and took a cruise to the USA for the first time. In the cruise there is no internet (the internet costs more than the cruise). No Google. So I use open download open source AI models and run them locally on my computer to have ChatGPT "like" access offline. It help me a lot in the planning of the trip.
 -->
 
 ---
@@ -106,6 +116,8 @@ image: ./ollama.png
 # Ollama
 
 Run open source AI models locally
+
+<!-- I think Ollama is the best way you can run local open source models on your computer, offline, but it also enables a whole ecosystem of other applications  -->
 
 ---
 level: 2
@@ -125,7 +137,7 @@ https://ollama.com/
 - Free
 - CLI
 - [Vision models](https://ollama.com/blog/vision-models)
-- Integrations [Copilot](https://ollama.com/blog/continue-code-assistant), [Apps](https://github.com/nirtamir2/fixkey-electron), Scripts...
+- Integrations [Copilot](https://ollama.com/blog/continue-code-assistant), [Apps](https://github.com/nirtamir2/fixkey-electron), [Zed](https://twitter.com/zeddotdev/status/1803535891584999438), Scripts...
 - [Local](http://localhost:3080/) [Open WebUI](https://github.com/open-webui/open-webui)
 - REST API
 - [Ollama SDK](https://github.com/ollama/ollama-js)
@@ -133,6 +145,7 @@ https://ollama.com/
 </v-clicks>
 
 <!-- http://localhost:3080/ to open ollama web ui --> 
+<!-- The cool thing about Ollama beside the option to run modles locally is the opertunities it brings to 3rd party applications. I see more and more applications that provides Ollama integrations. It's a gift to the open source community. -->
 
 ---
 level: 2
@@ -155,6 +168,7 @@ const data = await response.json();
 console.log(data);
 ```
 
+<!-- Ollama expose a REST API endpoint with the same API of OpenAI, so it can integrate with many tools. Just replace opanAI with ollama base url. In this example we are using the completion endpoint to just answer an answer instead of having a chat. We provide system message that is not visible to the user and define context, tone personalitty and rules of the AI. And we provide user message. Here is the result. There are 2 options - the completions / chat options. Completion is for a single question that does not care about history, while chat remembers context and history and used for multiple messages. -->
 
 ---
 level: 2
@@ -186,6 +200,9 @@ for await (const part of response) {
 ```
 ````
 
+<!-- We can convert it to call Ollama via sdk which is easier.
+And we can add streaming to have a real time result, so the user won't feel the app is slow.
+ -->
 
 ---
 level: 3
@@ -232,6 +249,14 @@ class: text-center
 # AI SDK
 
 https://sdk.vercel.ai
+
+
+<!-- Vercel SDK is a higher abstraction over ai. It enables to do more things without coupleing to the provider. -->
+---
+level: 2
+layout: iframe
+url: https://sdk.vercel.ai/docs/introduction
+---
 
 ---
 level: 2
@@ -316,512 +341,143 @@ console.log(result.text);
 </div>
 
 ---
-layout: image-right
-image: https://cover.sli.dev
+monacoRunAdditionalDeps:
+- ai
+- zod
+- ./google-model
 ---
 
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover![^1]
-
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from "vue";
-
-const count = ref(0);
-const doubled = computed(() => count.value * 2);
-
-doubled.value = 2;
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
-
-<!-- Inline style -->
 <style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
+
+[override="true"] .slidev-monaco-container-inner {
+  max-height: 200px !important;
 }
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
+
 </style>
 
-<!--
-Notes can also sync with clicks
+# AI SDK Object example
 
-[click] This will be highlighted after the first click
+```ts {monaco-run} {autorun:false, override: true}
+import { generateObject } from "ai";
+import { google } from "./google-model";
+import { z } from 'zod';
 
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: "John Doe",
-  books: [
-    "Vue 2 - Advanced Guide",
-    "Vue 3 - Basic Guide",
-    "Vue 4 - The Mystery",
-  ],
-});
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: "John Doe",
-        books: [
-          "Vue 2 - Advanced Guide",
-          "Vue 3 - Basic Guide",
-          "Vue 4 - The Mystery",
-        ],
-      },
-    };
-  },
-};
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: "John Doe",
-      books: [
-        "Vue 2 - Advanced Guide",
-        "Vue 3 - Basic Guide",
-        "Vue 4 - The Mystery",
-      ],
-    },
+const { object } = await generateObject({
+  model: google("models/gemini-1.5-flash-latest"),
+  schema: z.object({
+    recipe: z.object({
+      name: z.string(),
+      ingredients: z.array(
+        z.object({
+          name: z.string(),
+          amount: z.string(),
+        }),
+      ),
+      steps: z.array(z.string()),
+    }),
   }),
-};
+  prompt: 'Generate a lasagna recipe.',
+});
+
+console.log(object);
+
 ```
 
-Non-code blocks are ignored.
 
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: "John Doe",
-  books: [
-    "Vue 2 - Advanced Guide",
-    "Vue 3 - Basic Guide",
-    "Vue 4 - The Mystery",
-  ],
-};
-</script>
-```
-````
 
 ---
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
+monacoRunAdditionalDeps:
+- ai
+- zod
+- ./google-model
 ---
 
-# Themes
+# AI SDK Tools example
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
+```ts {monaco-run} {autorun:false}
+import { z } from 'zod';
+import { google } from "./google-model";
+import { generateText, tool } from 'ai';
 
-<div grid="~ cols-2 gap-2" m="t-2">
+const result = await generateText({
+  model: google("models/gemini-1.5-flash-latest"),
+  tools: {
+    date: tool({
+      description: 'Get current date',
+      parameters: z.object({}),
+      execute: async () => new Date().toString(),
+    }),
+  },
+  prompt: 'What day is it tomorrow?',
+});
 
-```yaml
----
-theme: default
----
+console.log(result);
+
 ```
 
-```yaml
----
-theme: seriph
----
-```
 
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn More](https://sli.dev/guide/animations#click-animations)
-
-</div>
-
----
-
-# Motions
-
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-
-$$
-{1|3|all}
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
----
-foo: bar
-dragPos:
-  square: 56,194,345,345
-square: 691,32,167,\_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/multiple-entries.md
-hide: false
----
 
 
 ---
 
-# Monaco Editor
+# Now let's build react app
 
-Slidev provides built-in Monaco Editor support.
+---
+layout: two-cols-header
+---
 
-Add `{monaco}` to the code block to turn it into an editor:
+# Chrome 127 Experimental Built In AI Provider
 
-```ts {monaco}
-import { ref } from "vue";
-import { emptyArray } from "./external";
+::left::
+<Tweet id="1799334729365487869" scale="0.65" />
 
-const arr = ref(emptyArray(10));
+::right::
+<Tweet id="1804141104696016932" scale="0.65" />
+
+---
+
+### WebGPU enables to run more AI models in the browser
+
+<Tweet id="1788177160227660079" scale="0.65" />
+
+---
+layout: iframe-right
+url: https://chrome-ai-play.vercel.app/
+monacoRunAdditionalDeps:
+- ai
+- chrome-ai
+---
+
+## Chrome 127 Experimental Built In AI Provider
+[chrome-ai](https://github.com/jeasonstudio/chrome-ai)
+
+```ts {monaco-run} {autorun:false}
+import { chromeai } from "chrome-ai";
+import { generateText } from "ai";
+
+const result = await generateText({
+  model: chromeai(),
+  prompt: "Tell me a joke.",
+});
+
+console.log(result.text);
 ```
 
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
 
-```ts {monaco-run}
-import { version } from "vue";
-import { emptyArray, sayHello } from "./external";
+---
+hide: true
+---
 
-sayHello();
-console.log(`vue ${version}`);
-console.log(
-  emptyArray<number>(10).reduce(
-    (fib) => [...fib, fib.at(-1)! + fib.at(-2)!],
-    [1, 1],
-  ),
-);
-```
+# References (Ollama-js)
+
+<Tweet id="1750000760450851030" scale="0.65" />
+
+---
+
+# References
+
+<Tweet id="1727731541781152035" scale="0.65" />
+
 
 ---
 layout: end
