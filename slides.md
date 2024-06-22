@@ -19,6 +19,12 @@ transition: slide-left
 mdc: true
 hideInToc: true
 ---
+<!-- NOTE: ⌘ Command + Brightness Down to toggle screen mirroring -->
+<!-- TODO: to configure shortcut to open chrome canary -->
+<!-- TODO: Close all windows with right control + K -->
+<!-- TODO: Make sure your arc browser profile is okay -->
+<!-- TODO: Make IDE in presentation mode and move IDE terminal to the right -->
+<!-- TODO: Make sure presentation theme is visible -->
 
 # Adding AI Capabilities to React Apps with Vercel AI SDK
 
@@ -95,6 +101,16 @@ This graph shows what exactly is an AI Engineer. It basically sits in the other 
 
 The webpage describes the rise of a new role called the "AI Engineer" - software engineers who specialize in applying AI through tools and APIs, rather than training models. This new discipline will be the highest-demand engineering job of the decade, as AI Engineers leverage both human-written and AI-generated code to build innovative AI-powered applications.
 -->
+
+---
+transition: fade-out
+level: 2
+---
+# AI Engineer Skills
+
+<a href="https://www.latent.space/p/hiring">Hiring AI Engineer</a>
+
+![ai-engineer-skills](ai-engineer-skills.png)
 
 ---
 layout: cover
@@ -392,35 +408,113 @@ monacoRunAdditionalDeps:
 - ./google-model
 ---
 
+
+<style>
+  [override="280"] .slidev-monaco-container-inner {
+    max-height: 280px !important;
+  }
+
+</style>
+
 # AI SDK Tools example
 
-```ts {monaco-run} {autorun:false}
+
+```ts {monaco-run} {autorun:false, override: 280}
 import { z } from 'zod';
 import { google } from "./google-model";
 import { generateText, tool } from 'ai';
 
 const result = await generateText({
   model: google("models/gemini-1.5-flash-latest"),
-  tools: {
-    date: tool({
-      description: 'Get current date',
-      parameters: z.object({}),
-      execute: async () => new Date().toString(),
+    tools: {
+    weather: tool({
+      description: 'Get the weather in a location',
+      parameters: z.object({
+        location: z.string().describe('The location to get the weather for'),
+      }),
+      execute: async ({ location }) => ({
+        location,
+        temperature: Math.floor(Math.random() * 30) + 7,
+      }),
     }),
   },
-  prompt: 'What day is it tomorrow?',
+  prompt: 'What is the weather in Tel Aviv?',
 });
 
-console.log(result);
+console.log(result.toolResults);
 
 ```
-
+  <!-- toolChoice: 'required', // force the model to call a tool 
+  
+    temperature: 0, // don't try to be creative here
+  -->
 
 
 
 ---
+monacoRunAdditionalDeps:
+- ai
+- zod
+- ./google-model
+---
 
-# Now let's build react app
+
+<style>
+  [override="300"] .slidev-monaco-container-inner {
+    max-height: 300px !important;
+  }
+
+</style>
+
+# AI SDK Tools example with roundtrips 
+
+
+```ts {monaco-run} {autorun:false, horizontal2: true, override: 300}
+import { z } from 'zod';
+import { google } from "./google-model";
+import { generateText, tool } from 'ai';
+
+const result = await generateText({
+  model: google("models/gemini-1.5-flash-latest"),
+    tools: {
+    weather: tool({
+      description: 'Get the weather in a location',
+      parameters: z.object({
+        location: z.string().describe('The location to get the weather for'),
+      }),
+      execute: async ({ location }) => ({
+        location,
+        temperature: Math.floor(Math.random() * 30) + 7,
+      }),
+    }),
+  },
+  maxToolRoundtrips: 5, // allow up to 5 tool roundtrips
+  prompt: 'What is the weather in San Francisco and Tel Aviv?',
+});
+
+console.log(result.text);
+console.log(result.responseMessages);
+
+```
+
+---
+layout: center
+---
+
+# Think about agents, tasks, real-time data, connect to external APIs...
+
+<!-- 
+
+[agentic](https://github.com/transitive-bullshit/agentic) - A collection of 20+ tools. Most tools connect to access external APIs such as Exa or E2B.
+[browserbase](https://github.com/browserbase/js-sdk?tab=readme-ov-file#vercel-ai-sdk-integration) - Browser tool that runs a headless browser
+ -->
+
+---
+
+# AI SDK UI
+---
+
+# AI SDK RSC
 
 ---
 layout: two-cols-header
