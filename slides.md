@@ -26,7 +26,10 @@ hideInToc: true
 <!-- TODO: Make IDE in presentation mode and move IDE terminal to the right -->
 <!-- TODO: Make sure presentation theme is visible -->
 
+
 # Adding AI Capabilities to React Apps with Vercel AI SDK
+
+
 
 <div class="pt-12">
   <span  class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
@@ -44,17 +47,18 @@ hideInToc: true
   </a>
 </div>
 
-<!--
 
-I'm exciting to be here and talk in JavaScript Israel meetup.
-The subject of AI is very new and it brings a lot of new ideas and possibilities.
-Nowadays we can build things that we wouldn't believe possible in the past with the power of AI.
-It's defenatelly a revolution. I'm goint to speak about how to add AI capabilities to your app practically.
+<!-- 
+Welcome everyone! I'm excited to talk about adding AI capabilities to your React apps using the Vercel AI SDK. AI is revolutionizing how we build applications, and today we'll explore practical ways to incorporate it into your projects.
 -->
 
 ---
 
-<Toc minDepth="1" maxDepth="2"></Toc>
+<Toc minDepth="1" maxDepth="1"></Toc>
+
+<!-- 
+Let's take a look at what we'll cover today. We'll start with the basics of AI integration, move on to practical implementations, and finish with some advanced techniques.
+-->
 
 ---
 title: About me
@@ -73,6 +77,10 @@ image: ./nirtamir.png
 - <mdi-linkedin /> [@nirtamir2](https://linkedin.com/in/nirtamir2)
 
 
+<!-- 
+Before we dive in, let me introduce myself. I'm Nir Tamir, a senior frontend developer passionate about open source and tooling. I work with early-stage startups, helping them leverage cutting-edge technologies like AI.
+-->
+
 ---
 transition: fade-out
 layout: quote
@@ -81,7 +89,9 @@ class: text-center text-balance
 
 # You don't need to be a Data Scientist to be an AI Engineer
 
-<!-- First, don't worry. You don't need to be a Data Scientist to be an AI Engineer.  -->
+<!-- 
+Now, I want to start with an important message: You don't need to be a data scientist to work with AI. As developers, we can leverage AI through APIs and SDKs, making it accessible for us to build intelligent applications.
+-->
 
 ---
 transition: fade-out
@@ -93,13 +103,8 @@ level: 2
 
 ![Swyx AI engineer](swyx-ai-engineer.jpeg)
 
-High level - in the right side of the API
-
-<!--
-This graph shows what exactly is an AI Engineer. It basically sits in the other side of the API. Someone already train the AI model, and he is using it to do the work. He tie all the things together and using the high level building blocks. No need to train data. Just call models and get the results.
-
-
-The webpage describes the rise of a new role called the "AI Engineer" - software engineers who specialize in applying AI through tools and APIs, rather than training models. This new discipline will be the highest-demand engineering job of the decade, as AI Engineers leverage both human-written and AI-generated code to build innovative AI-powered applications.
+<!-- 
+Let's talk about what an AI Engineer does. As this image shows, AI Engineers work on the application side of AI, using APIs and SDKs to integrate AI capabilities into software. We're not training models, but rather using them to solve real-world problems.
 -->
 
 ---
@@ -112,6 +117,12 @@ level: 2
 
 ![ai-engineer-skills](ai-engineer-skills.png)
 
+
+<!-- 
+These are some of the key skills for AI Engineers. Notice how they blend traditional software engineering with AI-specific knowledge. We'll touch on many of these skills throughout our discussion today.
+-->
+
+
 ---
 layout: cover
 background: ./cruise.png
@@ -119,9 +130,11 @@ background: ./cruise.png
 
 # My journey
 
-<!--
-I travel the world recently, and took a cruise to the USA for the first time. In the cruise there is no internet (the internet costs more than the cruise). No Google. So I use open download open source AI models and run them locally on my computer to have ChatGPT "like" access offline. It help me a lot in the planning of the trip.
+
+<!-- 
+I'd like to share a personal anecdote that illustrates the power of AI. During a recent cruise where I had no internet access, I used open-source AI models running locally on my computer to help plan my trip. This experience showed me how AI can be a powerful tool even in offline scenarios.
 -->
+
 
 ---
 layout: cover
@@ -133,7 +146,9 @@ image: ./ollama.png
 
 Run open source AI models locally
 
-<!-- I think Ollama is the best way you can run local open source models on your computer, offline, but it also enables a whole ecosystem of other applications  -->
+<!-- 
+One of the tools that made this possible was Ollama. It's a fantastic platform for running open-source AI models locally. Let's dive into what makes Ollama special and how it can be useful for AI developers.
+-->
 
 ---
 level: 2
@@ -160,8 +175,10 @@ https://ollama.com/
 
 </v-clicks>
 
-<!-- http://localhost:3080/ to open ollama web ui --> 
-<!-- The cool thing about Ollama beside the option to run modles locally is the opertunities it brings to 3rd party applications. I see more and more applications that provides Ollama integrations. It's a gift to the open source community. -->
+<!-- 
+Ollama offers several advantages. It's open-source, works offline, and provides a CLI interface. It supports vision models and has integrations with various development tools. Most importantly for us, it exposes a REST API that we can use in our applications.
+-->
+
 
 ---
 level: 2
@@ -184,13 +201,18 @@ const data = await response.json();
 console.log(data);
 ```
 
-<!-- Ollama expose a REST API endpoint with the same API of OpenAI, so it can integrate with many tools. Just replace opanAI with ollama base url. In this example we are using the completion endpoint to just answer an answer instead of having a chat. We provide system message that is not visible to the user and define context, tone personalitty and rules of the AI. And we provide user message. Here is the result. There are 2 options - the completions / chat options. Completion is for a single question that does not care about history, while chat remembers context and history and used for multiple messages. -->
+<!-- 
+Here's an example of how to call Ollama's API. Notice how similar it is to OpenAI's API structure. This compatibility makes it easier to switch between different AI providers in your applications.
+-->
+
 
 ---
 level: 2
 ---
 # Calling Ollama via SDK
+
 https://github.com/ollama/ollama-js
+
 ````md magic-move
 ```js
 import ollama from 'ollama'
@@ -216,9 +238,9 @@ for await (const part of response) {
 ```
 ````
 
-<!-- We can convert it to call Ollama via sdk which is easier.
-And we can add streaming to have a real time result, so the user won't feel the app is slow.
- -->
+<!-- 
+Ollama also provides an SDK, which simplifies the process of interacting with the AI models. Here's an example of how to use it for a simple chat interaction. We can also enable streaming for real-time responses, enhancing the user experience.
+-->
 
 ---
 level: 3
@@ -237,14 +259,18 @@ const response = await ollama.chat({
 })
 console.log(response.message.content)
 ```
----
-level: 3
-monacoRunAdditionalDeps:
-- ollama
+
+<!-- 
+Let's see a practical example of using the Ollama SDK. This code snippet demonstrates how to send a simple question to the AI model and receive a response.
+-->
 
 ---
+level: 3
+---
 # Calling Ollama via SDK Streaming
+
 https://github.com/ollama/ollama-js
+
 ```js {monaco-run} {autorun:false}
 import ollama from 'ollama/browser'
 
@@ -258,6 +284,10 @@ for await (const part of response) {
 }
 ```
 
+<!-- 
+Here's how we can use streaming with the Ollama SDK. This approach allows us to receive and process the AI's response in real-time, piece by piece, which can significantly improve the perceived responsiveness of your application.
+-->
+
 ---
 layout: center
 class: text-center
@@ -266,13 +296,21 @@ class: text-center
 
 https://sdk.vercel.ai
 
+<!-- 
+Now, let's shift our focus to the Vercel AI SDK. This toolkit provides a higher level of abstraction for working with AI models, making it even easier to integrate AI capabilities into your applications.
+-->
 
-<!-- Vercel SDK is a higher abstraction over ai. It enables to do more things without coupleing to the provider. -->
 ---
 level: 2
 layout: iframe
 url: https://sdk.vercel.ai/docs/introduction
 ---
+
+[Vercel SDK](https://sdk.vercel.ai/docs/introduction)
+
+<!-- 
+Here's the documentation for the Vercel AI SDK. It's a comprehensive resource that we'll be referring to throughout our discussion. I encourage you to explore it further after this presentation.
+-->
 
 ---
 level: 2
@@ -289,6 +327,10 @@ Create `.env.local` file with your [Google API key](https://aistudio.google.com/
 ```bash
 GOOGLE_GENERATIVE_AI_API_KEY="YOUR_KEY"
 ```
+
+<!-- 
+Let's start with a practical example using Google's Gemini AI. First, we'll install the necessary package and set up our environment variables. This setup process is crucial for securely connecting to the AI service.
+-->
 
 ---
 level: 2
@@ -318,6 +360,48 @@ const result = await generateText({
 console.log(result.text);
 ```
 
+
+<!-- 
+Here's a basic example of using the AI SDK with Google's Gemini model. We're setting up the AI, sending a prompt, and logging the response. This demonstrates how straightforward it is to interact with an AI model using the SDK.
+-->
+
+
+---
+level: 2
+---
+# AI SDK Switch models easily
+
+````md magic-move
+```ts
+import { google } from "@ai-sdk/google";
+import { generateText } from "ai";
+
+const result = await generateText({
+  model: google("models/gemini-1.5-flash-latest"),
+  prompt: "Tell me a joke.",
+});
+```
+```ts
+import { openai } from "@ai-sdk/openai";
+import { generateText } from "ai";
+
+const result = await generateText({
+  model: openai("gpt-4o"),
+  prompt: "Tell me a joke.",
+});
+```
+```ts
+import { ollama } from 'ollama-ai-provider';
+import { generateText } from "ai";
+
+const result = await generateText({
+  model: ollama('phi3'),
+  prompt: "Tell me a joke.",
+});
+```
+````
+
+
 ---
 level: 2
 monacoRunAdditionalDeps:
@@ -329,13 +413,8 @@ monacoRunAdditionalDeps:
 # AI SDK Image example
 
 ```ts {monaco-run} {autorun:false}
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateText } from "ai";
-import { env } from "./env";
-
-const google = createGoogleGenerativeAI({
-  apiKey: env.GOOGLE_GENERATIVE_AI_API_KEY,
-});
+import { google } from "./google-model";
 
 const result = await generateText({
   model: google("models/gemini-1.5-flash-latest"),
@@ -356,11 +435,17 @@ console.log(result.text);
  <img src="https://www.nirtamir.com/_astro/portrait.9b-_4A6X_bepz7.webp" alt="portrait" />
 </div>
 
+<!-- 
+The AI SDK also supports working with images. In this example, we're asking the AI to describe an image. This capability opens up many possibilities for applications involving visual content analysis.
+-->
+
 ---
+level: 2
+layout: two-cols-header
 monacoRunAdditionalDeps:
 - ai
-- zod
 - ./google-model
+- ./schema
 ---
 
 <style>
@@ -372,15 +457,27 @@ monacoRunAdditionalDeps:
 </style>
 
 # AI SDK Object example
-
-```ts {monaco-run} {autorun:false, override: true}
+::left::
+```ts {monaco-run} {autorun:false}
 import { generateObject } from "ai";
 import { google } from "./google-model";
-import { z } from 'zod';
+import { schema } from './schema';
 
 const { object } = await generateObject({
   model: google("models/gemini-1.5-flash-latest"),
-  schema: z.object({
+  schema,
+  prompt: 'Generate a lasagna recipe.',
+});
+
+console.log(object);
+
+```
+::right::
+```ts
+// schema.ts
+import { z } from 'zod';
+
+export const schema = z.object({
     recipe: z.object({
       name: z.string(),
       ingredients: z.array(
@@ -391,17 +488,17 @@ const { object } = await generateObject({
       ),
       steps: z.array(z.string()),
     }),
-  }),
-  prompt: 'Generate a lasagna recipe.',
-});
-
-console.log(object);
+  })
 
 ```
 
+<!-- 
+The AI SDK also allows us to generate structured objects. This is particularly useful when you need specific data formats from the AI's response. Here, we're using Zod to define a schema for a recipe, which the AI will then generate.
+-->
 
 
 ---
+level: 2
 monacoRunAdditionalDeps:
 - ai
 - zod
@@ -417,7 +514,6 @@ monacoRunAdditionalDeps:
 </style>
 
 # AI SDK Tools example
-
 
 ```ts {monaco-run} {autorun:false, override: 280}
 import { z } from 'zod';
@@ -449,9 +545,14 @@ console.log(result.toolResults);
     temperature: 0, // don't try to be creative here
   -->
 
+<!-- 
+The AI SDK also supports the use of tools, which allow the AI to interact with external data or functions. In this example, we're creating a weather tool that the AI can use to get weather information for a specific location.
+-->
+
 
 
 ---
+level: 2
 monacoRunAdditionalDeps:
 - ai
 - zod
@@ -497,14 +598,25 @@ console.log(result.responseMessages);
 
 ```
 
+
+<!-- 
+This example demonstrates a more complex interaction using tools and roundtrips. The AI can make multiple calls to the weather tool, allowing for more sophisticated and context-aware responses. This is particularly useful for scenarios where the AI needs to gather multiple pieces of information to formulate a complete answer.
+-->
+
 ---
 layout: center
+level: 3
 ---
 
 # Think about agents, tasks, real-time data, connect to external APIs...
 
-<!-- 
+https://github.com/ollama/ollama-js
 
+<!-- 
+The examples we've seen so far are just the beginning. As you delve deeper into AI integration, you can explore more advanced concepts like creating agents, defining complex tasks, incorporating real-time data, and connecting to various external APIs. The possibilities are vast and exciting.
+-->
+
+<!-- 
 [agentic](https://github.com/transitive-bullshit/agentic) - A collection of 20+ tools. Most tools connect to access external APIs such as Exa or E2B.
 [browserbase](https://github.com/browserbase/js-sdk?tab=readme-ov-file#vercel-ai-sdk-integration) - Browser tool that runs a headless browser
  -->
@@ -512,11 +624,25 @@ layout: center
 ---
 
 # AI SDK UI
+
+<!-- 
+Now, let's shift our focus to the UI aspects of AI integration. The AI SDK provides components and hooks that make it easy to create interactive AI-powered interfaces in your React applications. We'll explore how to build chat interfaces, completion components, and other AI-driven UI elements.
+-->
+
 ---
 
 # AI SDK RSC
 
+<!-- 
+React Server Components (RSC) offer new possibilities for AI integration. With AI SDK RSC, we can stream AI-generated content directly from the server to the client, enabling highly dynamic and responsive AI-powered interfaces. This approach can significantly improve performance and user experience in AI-heavy applications.
+-->
+
 ---
+
+# The futue
+
+---
+level: 2
 layout: two-cols-header
 ---
 
@@ -528,13 +654,13 @@ layout: two-cols-header
 ::right::
 <Tweet id="1804141104696016932" scale="0.65" />
 
+
+<!-- 
+An exciting development in the AI space is Chrome's experimental built-in AI provider. This feature, available in Chrome 127, allows developers to access AI capabilities directly through the browser. Let's look at some early reactions and potential implications of this technology.
+-->
+
 ---
-
-### WebGPU enables to run more AI models in the browser
-
-<Tweet id="1788177160227660079" scale="0.65" />
-
----
+level: 2
 layout: iframe-right
 url: https://chrome-ai-play.vercel.app/
 monacoRunAdditionalDeps:
@@ -542,7 +668,8 @@ monacoRunAdditionalDeps:
 - chrome-ai
 ---
 
-## Chrome 127 Experimental Built In AI Provider
+# Chrome 127 Experimental Built In AI Provider
+
 [chrome-ai](https://github.com/jeasonstudio/chrome-ai)
 
 ```ts {monaco-run} {autorun:false}
@@ -556,6 +683,25 @@ const result = await generateText({
 
 console.log(result.text);
 ```
+
+
+<!-- 
+Let's look at a practical example of using Chrome's built-in AI provider. This code demonstrates how to generate text using the Chrome AI, showcasing the simplicity and power of browser-based AI capabilities.
+-->
+
+---
+level: 2
+---
+
+# WebGPU enables to run more AI models in the browser
+
+<Tweet id="1788177160227660079" scale="0.65" />
+
+
+<!-- 
+WebGPU is a game-changer for running AI models in the browser. It provides the necessary performance boost to execute complex AI tasks client-side, opening up new possibilities for responsive and privacy-preserving AI applications.
+-->
+
 
 
 ---
@@ -572,6 +718,9 @@ hide: true
 
 <Tweet id="1727731541781152035" scale="0.65" />
 
+<!-- 
+Throughout this presentation, we've covered a lot of ground. Here's a tweet that teach you a little bit more about the magic of AI. It's not related to the coding, but I'm highly recommend to watch it in order to unserstand the power of AI.
+-->
 
 ---
 layout: end
@@ -586,6 +735,11 @@ layout: end
 - <mdi-presentation /> [Slides](https://github.com/nirtamir2)
 - <mdi-blog /> [Blog post](https://nirtamir.com)
 
+
+<!-- 
+Thank you all for your attention! I hope this presentation has given you insights into how to add AI capabilities to your React apps using the Vercel AI SDK. Remember, the field of AI is rapidly evolving, and there's always more to learn. Feel free to reach out if you have any questions or want to discuss AI integration further.
+-->
+
 ---
 
 # Further Reading
@@ -598,6 +752,7 @@ layout: end
 
 ---
 transition: slide-up
+hideInToc: true
 ---
 
 # Glossary
