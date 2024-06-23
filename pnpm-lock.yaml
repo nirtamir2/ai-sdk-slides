@@ -29,6 +29,9 @@ dependencies:
   chrome-ai:
     specifier: ^1.1.2
     version: 1.1.2
+  dotenv:
+    specifier: ^16.4.5
+    version: 16.4.5
   ollama:
     specifier: ^0.5.2
     version: 0.5.2
@@ -2997,7 +3000,6 @@ packages:
     engines: {node: '>=12'}
     requiresBuild: true
     dev: false
-    optional: true
 
   /drauu@0.4.0:
     resolution: {integrity: sha512-G+JU7UN5WGmx/yBk+iTAlkKwHDeHc02K0oEYms7b9OrsVU0UqXlpRKg/sNXKNDHbIlS3lGzUx7o4J200E5lAOQ==}
