@@ -473,7 +473,8 @@ console.log(object);
 
 ```
 ::right::
-```ts
+
+```ts twoslash
 // schema.ts
 import { z } from 'zod';
 
@@ -488,7 +489,16 @@ export const schema = z.object({
       ),
       steps: z.array(z.string()),
     }),
-  })
+  });
+
+type Result = z.infer<typeof schema>;
+//      ^?
+
+
+
+
+
+
 
 ```
 
@@ -548,8 +558,36 @@ console.log(result.toolResults);
 <!-- 
 The AI SDK also supports the use of tools, which allow the AI to interact with external data or functions. In this example, we're creating a weather tool that the AI can use to get weather information for a specific location.
 -->
+---
 
+# Zod auto infer types
 
+```ts twoslash
+import { z } from 'zod';
+import { google } from "@ai-sdk/google";
+import { generateText, tool } from 'ai';
+
+const result = await generateText({
+  model: google("models/gemini-1.5-flash-latest"),
+    tools: {
+    weather: tool({
+      description: 'Get the weather in a location',
+      parameters: z.object({
+        location: z.string().describe('The location to get the weather for'),
+      }),
+      execute: async ({ location }) => ({
+        //               we can infer the type of the location
+        location,
+        temperature: Math.floor(Math.random() * 30) + 7,
+      }),
+    }),
+  },
+  prompt: 'What is the weather in Tel Aviv?',
+});
+
+console.log(result.toolResults);
+
+```
 
 ---
 level: 2
