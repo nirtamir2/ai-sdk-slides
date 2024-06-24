@@ -205,6 +205,33 @@ console.log(data);
 Here's an example of how to call Ollama's API. Notice how similar it is to OpenAI's API structure. This compatibility makes it easier to switch between different AI providers in your applications.
 -->
 
+---
+monacoRunAdditionalDeps:
+- openai
+---
+# Ollama is compatible with OpenAI interface
+
+```ts {monaco-run} {autorun:false}
+import { OpenAI } from 'openai'
+
+const openai = new OpenAI({
+  baseURL: 'http://localhost:11434/v1',
+  apiKey: 'ollama', // Does not matter which key you use
+  dangerouslyAllowBrowser: true, // Just because I run it in the slide
+});
+
+const response = await openai.chat.completions.create({
+  model: 'llama3',
+  messages: [{ role: 'user', content: 'Tell me one line cool fact about AI' }],
+});
+
+console.log(response.choices[0].message.content)
+```
+
+<!-- 
+Here we are calling OpenAI API SDK, but changing the baseURL to point to Ollama's API.
+Because it's the same API - it should work the same way. Notice that some of the things are not supported by Ollama, like tools.
+-->
 
 ---
 level: 2
@@ -266,6 +293,8 @@ Let's see a practical example of using the Ollama SDK. This code snippet demonst
 
 ---
 level: 3
+monacoRunAdditionalDeps:
+- ollama
 ---
 # Calling Ollama via SDK Streaming
 
@@ -368,19 +397,12 @@ Here's a basic example of using the AI SDK with Google's Gemini model. We're set
 
 ---
 level: 2
+layout: two-cols-header
 ---
 # AI SDK Switch models easily
 
+::left::
 ````md magic-move
-```ts
-import { google } from "@ai-sdk/google";
-import { generateText } from "ai";
-
-const result = await generateText({
-  model: google("models/gemini-1.5-flash-latest"),
-  prompt: "Tell me a joke.",
-});
-```
 ```ts
 import { openai } from "@ai-sdk/openai";
 import { generateText } from "ai";
@@ -391,23 +413,61 @@ const result = await generateText({
 });
 ```
 ```ts
-import { ollama } from 'ollama-ai-provider';
+import { google } from "@ai-sdk/google";
 import { generateText } from "ai";
 
 const result = await generateText({
-  model: ollama('phi3'),
+  model: google("models/gemini-1.5-flash-latest"),
+  prompt: "Tell me a joke.",
+});
+```
+```ts
+import { anthropic } from "@ai-sdk/anthropic"
+import { generateText } from "ai";
+
+const result = await generateText({
+  model: anthropic("claude-3-opus-20240229"),
+  prompt: "Tell me a joke.",
+});
+```
+```ts
+import { mistral } from "@ai-sdk/mistral"
+import { generateText } from "ai";
+
+const result = await generateText({
+  model: mistral("mistral-large-latest"),
+  prompt: "Tell me a joke.",
+});
+```
+```ts
+import { ollama } from "ollama-ai-provider";
+import { generateText } from "ai";
+
+const result = await generateText({
+  model: ollama("phi3"),
+  prompt: "Tell me a joke.",
+});
+```
+```ts
+import { custom } from "@ai-sdk/custom"
+import { generateText } from "ai";
+
+const result = await generateText({
+  model: custom("mistral-large-latest"),
   prompt: "Tell me a joke.",
 });
 ```
 ````
 
+::right::
+![ai-sdk-providers](ai-sdk-providers.png)
 
 ---
 level: 2
 monacoRunAdditionalDeps:
 - ai
 - @ai-sdk/google
-- ./env
+- ./google-model
 ---
 
 # AI SDK Image example
@@ -492,7 +552,6 @@ export const schema = z.object({
   });
 
 type Result = z.infer<typeof schema>;
-
 
 
 
@@ -667,12 +726,25 @@ Now, let's shift our focus to the UI aspects of AI integration. The AI SDK provi
 -->
 
 ---
+layout: center
+level: 2
+---
+
+`useChat` is just [SWR](https://swr.vercel.app/) wrapper
+
+---
 
 # AI SDK RSC
 
 <!-- 
 React Server Components (RSC) offer new possibilities for AI integration. With AI SDK RSC, we can stream AI-generated content directly from the server to the client, enabling highly dynamic and responsive AI-powered interfaces. This approach can significantly improve performance and user experience in AI-heavy applications.
 -->
+---
+level: 2
+---
+- StreamUI the call
+- useActions
+
 
 ---
 
@@ -706,6 +778,8 @@ monacoRunAdditionalDeps:
 ---
 
 # Chrome 127 Experimental Built In AI Provider
+
+https://developer.chrome.com/docs/ai/built-in
 
 [chrome-ai](https://github.com/jeasonstudio/chrome-ai)
 
@@ -813,3 +887,13 @@ hideInToc: true
 <!--
 Retrieval-Augmented Generation (RAG) is the process of optimizing the output of a large language model, so it references an authoritative knowledge base outside of its training data sources before generating a response.
 -->
+
+
+
+---
+hide: true
+---
+
+TODO:
+- RSC - try to understand it better and demonstrate it
+- Cool stuff with agents 
