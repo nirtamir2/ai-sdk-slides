@@ -730,10 +730,11 @@ Now, let's shift our focus to the UI aspects of AI integration. The AI SDK provi
 ---
 level: 2
 ---
+# Chat UI with useChat
 
-```tsx
+```tsx twoslash
 "use client";
-
+import React from "react";
 import { useChat } from "ai/react";
 
 export default function Chat() {
@@ -760,15 +761,11 @@ export default function Chat() {
 ```
 
 ---
-layout: center
 level: 2
 ---
+# Chat Route
 
-`useChat` is just [SWR](https://swr.vercel.app/) wrapper
-
----
-
-```ts
+```ts twoslash
 // app/api/chat/route.ts
 import { google } from "@ai-sdk/google";
 import { streamText } from "ai";
@@ -784,6 +781,14 @@ export async function POST(request: Request) {
 }
 
 ```
+
+---
+level: 2
+layout: center
+---
+
+`useChat` is just [SWR](https://swr.vercel.app/) wrapper
+
 ---
 
 # AI SDK RSC
@@ -796,8 +801,11 @@ React Server Components (RSC) offer new possibilities for AI integration. With A
 level: 2
 layout: two-cols-header
 ---
+
 # Stream UI - server action
+
 ::left::
+
 ```tsx {all|6|7-19|13-17}
 // actions.tsx
 export async function streamComponent() {
@@ -826,7 +834,7 @@ export async function streamComponent() {
 
 ::right::
 
-<SlidevVideo v-click controls>
+<SlidevVideo controls>
   <!-- Anything that can go in a HTML video element. -->
   <source src="/verce-ai-rsc-streaming.mp4" type="video/mp4" />
   <p>
@@ -842,12 +850,12 @@ level: 2
 ```tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { streamComponent } from './actions';
 
 export default function Page() {
-  const [component, setComponent] = useState<React.ReactNode>();
+  const [component, setComponent] = useState<ReactNode>();
 
   return (
     <div>

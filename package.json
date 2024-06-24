@@ -15,6 +15,7 @@
     "@slidev/cli": "^0.49.11",
     "@slidev/theme-default": "^0.25.0",
     "@slidev/theme-seriph": "^0.25.0",
+    "@types/react": "^18.3.3",
     "ai": "^3.2.5",
     "chrome-ai": "^1.1.2",
     "dotenv": "^16.4.5",
