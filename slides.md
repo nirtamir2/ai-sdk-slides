@@ -767,6 +767,27 @@ layout: two-cols-header
 <!-- 
 An exciting development in the AI space is Chrome's experimental built-in AI provider. This feature, available in Chrome 127, allows developers to access AI capabilities directly through the browser. Let's look at some early reactions and potential implications of this technology.
 -->
+---
+level: 2
+layout: two-cols-header
+---
+
+# Chrome 127 Experimental Built In AI Provider
+
+::left::
+```ts {monaco-run} {autorun:false}
+const session = await window.ai.createTextSession();
+const result = await session.prompt("Tell me a joke.");
+console.log(result)
+```
+
+::right::
+<Tweet id="1805190952358650251" scale="0.65" />
+
+
+<!-- 
+Here is a demo runnong ai in the browser. window.ai. 2 lines of code.
+-->
 
 ---
 level: 2
