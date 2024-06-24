@@ -721,9 +721,43 @@ The examples we've seen so far are just the beginning. As you delve deeper into 
 
 # AI SDK UI
 
+It works with multiple ui frameworks, like React, Solid, Vue, and Svelte.
+
 <!-- 
 Now, let's shift our focus to the UI aspects of AI integration. The AI SDK provides components and hooks that make it easy to create interactive AI-powered interfaces in your React applications. We'll explore how to build chat interfaces, completion components, and other AI-driven UI elements.
 -->
+
+---
+level: 2
+---
+
+```tsx
+"use client";
+
+import { useChat } from "ai/react";
+
+export default function Chat() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  return (
+    <div>
+      {messages.map((m) => (
+        <div key={m.id}>
+          {m.role === "user" ? "User: " : "AI: "}
+          {m.content}
+        </div>
+      ))}
+      <form onSubmit={handleSubmit}>
+        <input
+          value={input}
+          placeholder="Say something..."
+          onChange={handleInputChange}
+        />
+      </form>
+    </div>
+  );
+}
+
+```
 
 ---
 layout: center
@@ -734,16 +768,232 @@ level: 2
 
 ---
 
+```ts
+// app/api/chat/route.ts
+import { google } from "@ai-sdk/google";
+import { streamText } from "ai";
+
+export async function POST(request: Request) {
+  const { messages } = await request.json();
+  const stream = await streamText({
+    model: google("models/gemini-1.5-flash-latest"),
+    system: "You are a helpful assistant.",
+    messages,
+  });
+  return stream.toAIStreamResponse();
+}
+
+```
+---
+
 # AI SDK RSC
 
 <!-- 
 React Server Components (RSC) offer new possibilities for AI integration. With AI SDK RSC, we can stream AI-generated content directly from the server to the client, enabling highly dynamic and responsive AI-powered interfaces. This approach can significantly improve performance and user experience in AI-heavy applications.
 -->
+
+---
+level: 2
+layout: two-cols-header
+---
+# Stream UI - server action
+::left::
+```tsx {all|6|7-19|13-17}
+// actions.tsx
+export async function streamComponent() {
+  const result = await streamUI({
+    model: openai('gpt-4o'),
+    prompt: 'Get the weather for San Francisco',
+    text: ({ content }) => <div>{content}</div>,
+    tools: {
+      getWeather: {
+        description: 'Get the weather for a location',
+        parameters: z.object({
+          location: z.string(),
+        }),
+        generate: async function* ({ location }) {
+          yield <LoadingComponent />;
+          const weather = await getWeather(location);
+          return <WeatherComponent weather={weather} location={location} />;
+        },
+      },
+    },
+  });
+
+  return result.value;
+}
+```
+
+::right::
+
+<SlidevVideo v-click controls>
+  <!-- Anything that can go in a HTML video element. -->
+  <source src="/verce-ai-rsc-streaming.mp4" type="video/mp4" />
+  <p>
+    Your browser does not support videos. You may download it
+    <a href="/verce-ai-rsc-streaming.mp4">here</a>.
+  </p>
+</SlidevVideo>
+
+---
+level: 2
+---
+# Stream UI - client component
+```tsx
+'use client';
+
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { streamComponent } from './actions';
+
+export default function Page() {
+  const [component, setComponent] = useState<React.ReactNode>();
+
+  return (
+    <div>
+      <form
+        onSubmit={async e => {
+          e.preventDefault();
+          setComponent(await streamComponent());
+        }}
+      >
+        <Button>Stream Component</Button>
+      </form>
+      <div>{component}</div>
+    </div>
+  );
+}
+```
+
 ---
 level: 2
 ---
 - StreamUI the call
 - useActions
+
+---
+level: 2
+layout: two-cols-header
+---
+# Creating the AI provider
+
+::left::
+```tsx
+export const AI = createAI<Array<ServerMessage>, Array<ClientMessage>>({
+  actions: {
+    continueConversation, // the server action
+  },
+  initialAIState: [],
+  initialUIState: [],
+});
+```
+
+::right::
+
+```tsx
+// layout.tsx
+import type { ReactNode } from 'react';
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>
+        <AI>
+          {children}
+        </AI>
+      </body>
+    </html>
+  );
+}
+```
+
+---
+
+# Creating AI chat
+
+---
+level: 2
+---
+
+# Creating the server action
+
+````md magic-move
+```tsx
+// action.tsx
+export async function continueConversation(
+  input: string,
+): Promise<ClientMessage> {
+  "use server";
+
+  const result = await streamUI({
+    model: google("models/gemini-1.5-flash-latest"),
+    prompt: 'Get the weather for San Francisco',
+    text: ({ content, done }) => {
+      return <div>{content}</div>;
+    })
+```
+```tsx {7,12-21}
+// action.tsx
+export async function continueConversation(
+  input: string,
+): Promise<ClientMessage> {
+  "use server";
+
+  const history = getMutableAIState(); // This is the server ai state
+
+  const result = await streamUI({
+    model: google("models/gemini-1.5-flash-latest"),
+    prompt: 'Get the weather for San Francisco',
+    messages: [...history.get(), { role: "user", content: input }],
+    text: ({ content, done }) => {
+      if (done) {
+        // Updates the AI state with the new state, marks it as finalized and closes the stream.
+        history.done((messages: Array<ServerMessage>) => [
+          ...messages,
+          { role: "assistant", content },
+        ]);
+      }
+
+      return <div>{content}</div>;
+    })
+```
+````
+<!-- 
+<v-click>
+<v-drag-arrow pos="343,222,170,0" text-xl>
+</v-drag-arrow>
+<v-drag pos="520,203,240,40">
+  This is the server chat history
+</v-drag>
+</v-click> -->
+
+---
+level: 2
+---
+# Creating the AI provider
+```ts
+export interface ServerMessage {
+  role: "user" | "assistant";
+  content: string;
+}
+
+export interface ClientMessage {
+  id: string;
+  role: "user" | "assistant";
+  display: ReactNode;
+}
+
+export const AI = createAI<Array<ServerMessage>, Array<ClientMessage>>({
+  actions: {
+    continueConversation, // this is the server action that we will define later
+  },
+  initialAIState: [],
+  initialUIState: [],
+});
+```
 
 
 ---
@@ -917,4 +1167,4 @@ hide: true
 
 TODO:
 - RSC - try to understand it better and demonstrate it
-- Cool stuff with agents 
+- Cool stuff with agents
