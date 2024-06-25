@@ -330,6 +330,12 @@ class: text-center
 
 https://sdk.vercel.ai
 
+
+<div class="flex items-center justify-center">                    
+  <img src="ai-overview.png" alt="ai-overview" width="500"/>
+</div>
+
+
 <!-- 
 Now, let's shift our focus to the Vercel AI SDK. This toolkit provides a higher level of abstraction for working with AI models, making it even easier to integrate AI capabilities into your applications.
 -->
@@ -404,6 +410,7 @@ Here's a basic example of using the AI SDK with Google's Gemini model. We're set
 hideInToc: true
 layout: two-cols-header
 ---
+
 # AI SDK Switch models easily
 
 ::left::
@@ -466,6 +473,9 @@ const result = await generateText({
 
 ::right::
 ![ai-sdk-providers](ai-sdk-providers.png)
+
+<div class="h-50">
+</div> 
 
 <!-- Here is an example of how easy it is to change the AI provider in the SDK.
  One line of code to just change the model field -->
@@ -657,6 +667,8 @@ console.log(result.toolResults);
 
 ```
 
+<!-- We get automatic type inference from Zod -->
+
 ---
 hideInToc: true
 monacoRunAdditionalDeps:
@@ -716,27 +728,28 @@ level: 3
 
 # Think about agents, tasks, real-time data, connect to external APIs...
 
-https://github.com/ollama/ollama-js
+- [agentic](https://github.com/transitive-bullshit/agentic) - A collection of 20+ tools. Most tools connect to access external APIs such as Exa or E2B.
+- [browserbase](https://github.com/browserbase/js-sdk?tab=readme-ov-file#vercel-ai-sdk-integration) - Browser tool that runs a headless browser
 
 <!-- 
 The examples we've seen so far are just the beginning. As you delve deeper into AI integration, you can explore more advanced concepts like creating agents, defining complex tasks, incorporating real-time data, and connecting to various external APIs. The possibilities are vast and exciting.
--->
-
-<!-- 
-[agentic](https://github.com/transitive-bullshit/agentic) - A collection of 20+ tools. Most tools connect to access external APIs such as Exa or E2B.
-[browserbase](https://github.com/browserbase/js-sdk?tab=readme-ov-file#vercel-ai-sdk-integration) - Browser tool that runs a headless browser
  -->
 
 ---
 level: 2
+layout: center
 ---
 
 # AI SDK UI
 
-It works with multiple ui frameworks, like React, Solid, Vue, and Svelte.
+It works with multiple UI frameworks, like React, Solid, Vue, and Svelte.
+
+<div class="flex items-center justify-center pt-16">                    
+  <img src="sdk-ui-frameworks.png" alt="sdk-ui-frameworks" width="500"/>
+</div>
 
 <!-- 
-Now, let's shift our focus to the UI aspects of AI integration. The AI SDK provides components and hooks that make it easy to create interactive AI-powered interfaces in your React applications. We'll explore how to build chat interfaces, completion components, and other AI-driven UI elements.
+Now, let's shift our focus to the UI aspects of AI integration. The AI SDK provides components and hooks that make it easy to create interactive AI-powered interfaces in your React applications. We'll explore how to build chat interfaces, completion components, and other AI-driven UI elements. It supported in multiple UI frameworks, like React, Solid, Vue, and Svelte. Notice that at this time most tools functionality is available only in React. https://sdk.vercel.ai/docs/ai-sdk-ui/overview#ui-framework-support
 -->
 
 ---
@@ -772,6 +785,8 @@ export default function Chat() {
 
 ```
 
+<!-- ai sdk exposes useChat that can be used to create chat UI. It returns the messages, and input + handleInputChange to control the input value, and handleSubmit that sends a post request to `/api/chat` with the message list -->
+
 ---
 hideInToc: true
 ---
@@ -794,20 +809,108 @@ export async function POST(request: Request) {
 
 ```
 
+<!--  Here we define a POST route that receives the message list, calls the ai model and returns a stream of messages -->
+
 ---
 hideInToc: true
 layout: center
 ---
 
-`useChat` is just [SWR](https://swr.vercel.app/) wrapper
+`useChat` uses [SWR](https://swr.vercel.app/) internally
+
+<!-- useChate use swr internally to call this the chat route  -->
 
 ---
 level: 2
+layout: center
 ---
 # AI SDK RSC
 
+Creating generative UI with React Server Components
+
+<img src="generative-ui.png" alt="generative-ui" width="500"/>
+
+
 <!-- 
 React Server Components (RSC) offer new possibilities for AI integration. With AI SDK RSC, we can stream AI-generated content directly from the server to the client, enabling highly dynamic and responsive AI-powered interfaces. This approach can significantly improve performance and user experience in AI-heavy applications.
+-->
+
+
+---
+hideInToc: true
+layout: two-cols-header
+---
+# JavaScript generator functions
+
+::left::
+
+**Normal Function:**
+
+Runs from start to finish each time you call it.
+
+**Generator Function:**
+
+Can pause execution and resume later.
+
+**Yield Statement:**
+
+- `yield` pauses and returns a value.
+- Resumes after `yield`.
+
+**Iterator Object**
+- Returns an iterator object.
+- Controls the generator's execution
+
+::right::
+
+```js
+function* countToThree() {
+  console.log('Start');
+  yield 1;
+  console.log('After first yield');
+  yield 2;
+  console.log('After second yield');
+  yield 3;
+  console.log('End');
+}
+
+// Create an iterator from the generator function
+const iterator = countToThree();
+
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+```
+
+<!-- 
+We need to introduce the concept of generator functions because it's used when we want to create generativeUI.
+We define a generator with function*.
+
+### Here's how it works: 
+
+Normally, when you write a function in JavaScript, it runs from start to finish each time you call it. But a generator function is special because it can pause its execution and then pick up where it left off later.
+
+Yield Statement: Within a generator function, the `yield` keyword is used to pause the function and return a value. When the function is called again, it resumes execution right after the `yield`.
+
+Iterator Object: When you call a generator function, it doesn’t execute immediately. Instead, it returns an iterator object. You interact with this object to control the execution of the generator.
+
+### Explanation
+
+Calling `countToThree`: When you call `countToThree`, it returns an iterator object and doesn't start executing the function.
+
+- `iterator.next()`: Calling `next()` starts the generator. It runs until it hits the first `yield`, returning the value after `yield`. The done property indicates if the generator has finished running.
+- Resuming Execution: Each subsequent call to `next()` resumes execution from where it left off, running until the next `yield`.
+- Completion: When the generator function has no more `yield` statements to execute, it returns `{ value: undefined, done: true }`.
+
+### Use Cases
+
+Generator functions are particularly useful for:
+
+- **Managing asynchronous code:** You can pause and resume functions to handle asynchronous operations more cleanly.
+- **Lazy evaluation:** Generate values on the fly rather than computing everything upfront, which can be useful for handling large datasets.
+- **Custom Iterators:** Create complex iteration logic that can be paused and resumed.
+
 -->
 
 ---
@@ -819,8 +922,10 @@ layout: two-cols-header
 
 ::left::
 
-```tsx {all|6|7-19|13-17}
+```tsx {all|2|8|9-20|14-18|all}
 // actions.tsx
+'use server';
+
 export async function streamComponent() {
   const result = await streamUI({
     model: openai('gpt-4o'),
@@ -856,6 +961,19 @@ export async function streamComponent() {
   </p>
 </SlidevVideo>
 
+<!-- 
+First of all - we have a server action here. 
+
+Server Actions are asynchronous functions that are executed on the server. They can be used in Server and Client Components to handle form submissions and data mutations in Next.js applications.
+
+It's like having a fetch client / trpc without the validations. We define them with `actions.tsx` and and use top-level `use server`;
+
+
+Here we call `streamUI` which is like `generateText`. The text value renders the value of the generated tokens from the model response. Rendering JSX from the server is done by using a tool (like before) - which the model decide to call. As a reminder - a tool is just a function call. But now we can define the parameters as props, and return JSX instead. Every time we want to `await` - we don't want to block the stream - so we yield the value - in this case we yield the `<LoadingComponent>` then we fetch the weather data and return it when it's ready.
+
+
+-->
+
 ---
 hideInToc: true
 ---
@@ -885,14 +1003,10 @@ export default function Page() {
   );
 }
 ```
+<!-- In the client side - we just calll the server action, set the state and render it -->
 
 ---
-hideInToc: true
----
-- StreamUI the call
-- useActions
-
----
+hide: true
 hideInToc: true
 layout: two-cols-header
 ---
@@ -933,11 +1047,13 @@ export default function RootLayout({
 
 ---
 hideInToc: true
+hide: true
 ---
 # Creating AI chat
 
 ---
 hideInToc: true
+hide: true
 ---
 
 # Creating the server action
@@ -994,6 +1110,8 @@ export async function continueConversation(
 
 ---
 hideInToc: true
+hide: true
+
 ---
 # Creating the AI provider
 ```ts
