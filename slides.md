@@ -53,8 +53,12 @@ Welcome everyone! I'm excited to talk about adding AI capabilities to your React
 -->
 
 ---
+hideInToc: true
+---
 
-<Toc minDepth="1" maxDepth="1"></Toc>
+# TOC
+
+<Toc />
 
 <!-- 
 Let's take a look at what we'll cover today. We'll start with the basics of AI integration, move on to practical implementations, and finish with some advanced techniques.
@@ -95,7 +99,7 @@ Now, I want to start with an important message: You don't need to be a data scie
 
 ---
 transition: fade-out
-level: 2
+hideInToc: true
 ---
 # AI Engineer
 
@@ -109,7 +113,7 @@ Let's talk about what an AI Engineer does. As this image shows, AI Engineers wor
 
 ---
 transition: fade-out
-level: 2
+hideInToc: true
 ---
 # AI Engineer Skills
 
@@ -151,7 +155,7 @@ One of the tools that made this possible was Ollama. It's a fantastic platform f
 -->
 
 ---
-level: 2
+hideInToc: true
 layout: image-right
 image: ./ollama.png
 layoutClass: gap-16
@@ -181,7 +185,7 @@ Ollama offers several advantages. It's open-source, works offline, and provides 
 
 
 ---
-level: 2
+hideInToc: true
 ---
 # Calling Ollama via REST API
 
@@ -206,6 +210,7 @@ Here's an example of how to call Ollama's API. Notice how similar it is to OpenA
 -->
 
 ---
+hideInToc: true
 monacoRunAdditionalDeps:
 - openai
 ---
@@ -234,7 +239,7 @@ Because it's the same API - it should work the same way. Notice that some of the
 -->
 
 ---
-level: 2
+hideInToc: true
 ---
 # Calling Ollama via SDK
 
@@ -330,7 +335,7 @@ Now, let's shift our focus to the Vercel AI SDK. This toolkit provides a higher 
 -->
 
 ---
-level: 2
+hideInToc: true
 layout: iframe
 url: https://sdk.vercel.ai/docs/introduction
 ---
@@ -342,7 +347,7 @@ Here's the documentation for the Vercel AI SDK. It's a comprehensive resource th
 -->
 
 ---
-level: 2
+hideInToc: true
 ---
 
 # Getting started with Google Gemini AI
@@ -362,7 +367,7 @@ Let's start with a practical example using Google's Gemini AI. First, we'll inst
 -->
 
 ---
-level: 2
+hideInToc: true
 monacoRunAdditionalDeps:
 - ai
 - @ai-sdk/google
@@ -396,7 +401,7 @@ Here's a basic example of using the AI SDK with Google's Gemini model. We're set
 
 
 ---
-level: 2
+hideInToc: true
 layout: two-cols-header
 ---
 # AI SDK Switch models easily
@@ -462,8 +467,11 @@ const result = await generateText({
 ::right::
 ![ai-sdk-providers](ai-sdk-providers.png)
 
+<!-- Here is an example of how easy it is to change the AI provider in the SDK.
+ One line of code to just change the model field -->
+
 ---
-level: 2
+hideInToc: true
 monacoRunAdditionalDeps:
 - ai
 - @ai-sdk/google
@@ -491,7 +499,7 @@ console.log(result.text);
 
 ```
 
-<div v-click class="absolute top-36 right-14 size-64">
+<div v-click class="absolute top-16 right-32 size-52">
  <img src="https://www.nirtamir.com/_astro/portrait.9b-_4A6X_bepz7.webp" alt="portrait" />
 </div>
 
@@ -500,7 +508,7 @@ The AI SDK also supports working with images. In this example, we're asking the 
 -->
 
 ---
-level: 2
+hideInToc: true
 layout: two-cols-header
 monacoRunAdditionalDeps:
 - ai
@@ -566,7 +574,7 @@ The AI SDK also allows us to generate structured objects. This is particularly u
 
 
 ---
-level: 2
+hideInToc: true
 monacoRunAdditionalDeps:
 - ai
 - zod
@@ -617,6 +625,8 @@ console.log(result.toolResults);
 The AI SDK also supports the use of tools, which allow the AI to interact with external data or functions. In this example, we're creating a weather tool that the AI can use to get weather information for a specific location.
 -->
 ---
+hideInToc: true
+---
 
 # Zod auto infer types
 
@@ -648,7 +658,7 @@ console.log(result.toolResults);
 ```
 
 ---
-level: 2
+hideInToc: true
 monacoRunAdditionalDeps:
 - ai
 - zod
@@ -718,6 +728,8 @@ The examples we've seen so far are just the beginning. As you delve deeper into 
  -->
 
 ---
+level: 2
+---
 
 # AI SDK UI
 
@@ -728,7 +740,7 @@ Now, let's shift our focus to the UI aspects of AI integration. The AI SDK provi
 -->
 
 ---
-level: 2
+hideInToc: true
 ---
 # Chat UI with useChat
 
@@ -761,7 +773,7 @@ export default function Chat() {
 ```
 
 ---
-level: 2
+hideInToc: true
 ---
 # Chat Route
 
@@ -783,14 +795,15 @@ export async function POST(request: Request) {
 ```
 
 ---
-level: 2
+hideInToc: true
 layout: center
 ---
 
 `useChat` is just [SWR](https://swr.vercel.app/) wrapper
 
 ---
-
+level: 2
+---
 # AI SDK RSC
 
 <!-- 
@@ -798,7 +811,7 @@ React Server Components (RSC) offer new possibilities for AI integration. With A
 -->
 
 ---
-level: 2
+hideInToc: true
 layout: two-cols-header
 ---
 
@@ -844,7 +857,7 @@ export async function streamComponent() {
 </SlidevVideo>
 
 ---
-level: 2
+hideInToc: true
 ---
 # Stream UI - client component
 ```tsx
@@ -874,13 +887,13 @@ export default function Page() {
 ```
 
 ---
-level: 2
+hideInToc: true
 ---
 - StreamUI the call
 - useActions
 
 ---
-level: 2
+hideInToc: true
 layout: two-cols-header
 ---
 # Creating the AI provider
@@ -919,11 +932,12 @@ export default function RootLayout({
 ```
 
 ---
-
+hideInToc: true
+---
 # Creating AI chat
 
 ---
-level: 2
+hideInToc: true
 ---
 
 # Creating the server action
@@ -979,7 +993,7 @@ export async function continueConversation(
 </v-click> -->
 
 ---
-level: 2
+hideInToc: true
 ---
 # Creating the AI provider
 ```ts
@@ -1009,7 +1023,7 @@ export const AI = createAI<Array<ServerMessage>, Array<ClientMessage>>({
 # The futue
 
 ---
-level: 2
+hideInToc: true
 layout: two-cols-header
 ---
 
@@ -1026,7 +1040,7 @@ layout: two-cols-header
 An exciting development in the AI space is Chrome's experimental built-in AI provider. This feature, available in Chrome 127, allows developers to access AI capabilities directly through the browser. Let's look at some early reactions and potential implications of this technology.
 -->
 ---
-level: 2
+hideInToc: true
 layout: two-cols-header
 ---
 
@@ -1048,7 +1062,7 @@ Here is a demo runnong ai in the browser. window.ai. 2 lines of code.
 -->
 
 ---
-level: 2
+hideInToc: true
 layout: iframe-right
 url: https://chrome-ai-play.vercel.app/
 monacoRunAdditionalDeps:
@@ -1080,7 +1094,7 @@ Let's look at a practical example of using Chrome's built-in AI provider. This c
 -->
 
 ---
-level: 2
+hideInToc: true
 ---
 
 # WebGPU enables to run more AI models in the browser
