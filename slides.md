@@ -1253,9 +1253,9 @@ hideInToc: true
 
 - Security
 - Rate limits
-- Prompt engineering
 - Langchain
-- RAG
+- Prompt engineering
+- Retrieval-Augmented Generation (RAG)
 - Agents
 
 ---
