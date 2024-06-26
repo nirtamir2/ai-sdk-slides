@@ -50,7 +50,7 @@ download: true
 
 
 <!-- 
-Welcome everyone! I"m excited to talk about adding AI capabilities to your React apps using the Vercel AI SDK. AI is revolutionizing how we build applications, and today we"ll explore practical ways to incorporate it into your projects.
+Welcome everyone! I'm excited to talk about adding AI capabilities to your React apps using the Vercel AI SDK. AI is revolutionizing how we build applications, and today we'll explore practical ways to incorporate it into your projects.
 -->
 
 ---
@@ -62,7 +62,7 @@ hideInToc: true
 <Toc />
 
 <!-- 
-Let"s take a look at what we"ll cover today. We"ll start with the basics of AI integration, move on to practical implementations, and finish with some advanced techniques.
+Let's take a look at what we'll cover today. We'll start with the basics of AI integration, move on to practical implementations, and finish with some advanced techniques.
 -->
 
 ---
@@ -83,7 +83,7 @@ image: ./nirtamir.png
 
 
 <!-- 
-Before we dive in, let me introduce myself. I"m Nir Tamir, a senior frontend developer passionate about open source and tooling. I work with early-stage startups, helping them leverage cutting-edge technologies like AI.
+Before we dive in, let me introduce myself. I'm Nir Tamir, a senior frontend developer passionate about open source and tooling. I work with early-stage startups, helping them leverage cutting-edge technologies like AI.
 -->
 
 ---
@@ -109,7 +109,7 @@ hideInToc: true
 ![Swyx AI engineer](/swyx-ai-engineer.jpeg)
 
 <!-- 
-Let"s talk about what an AI Engineer does. As this image shows, AI Engineers work on the application side of AI, using APIs and SDKs to integrate AI capabilities into software. We"re not training models, but rather using them to solve real-world problems.
+Let's talk about what an AI Engineer does. As this image shows, AI Engineers work on the application side of AI, using APIs and SDKs to integrate AI capabilities into software. We're not training models, but rather using them to solve real-world problems.
 -->
 
 ---
@@ -124,7 +124,7 @@ hideInToc: true
 
 
 <!-- 
-These are some of the key skills for AI Engineers. Notice how they blend traditional software engineering with AI-specific knowledge. We"ll touch on many of these skills throughout our discussion today.
+These are some of the key skills for AI Engineers. Notice how they blend traditional software engineering with AI-specific knowledge. We'll touch on many of these skills throughout our discussion today.
 -->
 
 
@@ -137,7 +137,7 @@ background: ./cruise.png
 
 
 <!-- 
-I"d like to share a personal anecdote that illustrates the power of AI. During a recent cruise where I had no internet access, I used open-source AI models running locally on my computer to help plan my trip. This experience showed me how AI can be a powerful tool even in offline scenarios.
+I'd like to share a personal anecdote that illustrates the power of AI. During a recent cruise where I had no internet access, I used open-source AI models running locally on my computer to help plan my trip. This experience showed me how AI can be a powerful tool even in offline scenarios.
 -->
 
 
@@ -152,7 +152,7 @@ image: ./ollama.png
 Run open source AI models locally
 
 <!-- 
-One of the tools that made this possible was Ollama. It"s a fantastic platform for running open-source AI models locally. Let"s dive into what makes Ollama special and how it can be useful for AI developers.
+One of the tools that made this possible was Ollama. It's a fantastic platform for running open-source AI models locally. Let's dive into what makes Ollama special and how it can be useful for AI developers.
 -->
 
 ---
@@ -181,7 +181,7 @@ https://ollama.com/
 </v-clicks>
 
 <!-- 
-Ollama offers several advantages. It"s open-source, works offline, and provides a CLI interface. It supports vision models and has integrations with various development tools. Most importantly for us, it exposes a REST API that we can use in our applications.
+Ollama offers several advantages. It's open-source, works offline, and provides a CLI interface. It supports vision models and has integrations with various development tools. Most importantly for us, it exposes a REST API that we can use in our applications.
 -->
 
 
@@ -207,7 +207,7 @@ console.log(data);
 ```
 
 <!-- 
-Here"s an example of how to call Ollama"s API. Notice how similar it is to OpenAI"s API structure. This compatibility makes it easier to switch between different AI providers in your applications.
+Here's an example of how to call Ollama's API. Notice how similar it is to OpenAI's API structure. This compatibility makes it easier to switch between different AI providers in your applications.
 -->
 
 ---
@@ -235,8 +235,8 @@ console.log(response.choices[0].message.content)
 ```
 
 <!-- 
-Here we are calling OpenAI API SDK, but changing the baseURL to point to Ollama"s API.
-Because it"s the same API - it should work the same way. Notice that some of the things are not supported by Ollama, like tools.
+Here we are calling OpenAI API SDK, but changing the baseURL to point to Ollama's API.
+Because it's the same API - it should work the same way. Notice that some of the things are not supported by Ollama, like tools.
 -->
 
 ---
@@ -272,7 +272,7 @@ for await (const part of response) {
 ````
 
 <!-- 
-Ollama also provides an SDK, which simplifies the process of interacting with the AI models. Here"s an example of how to use it for a simple chat interaction. We can also enable streaming for real-time responses, enhancing the user experience.
+Ollama also provides an SDK, which simplifies the process of interacting with the AI models. Here's an example of how to use it for a simple chat interaction. We can also enable streaming for real-time responses, enhancing the user experience.
 -->
 
 ---
@@ -294,7 +294,7 @@ console.log(response.message.content)
 ```
 
 <!-- 
-Let"s see a practical example of using the Ollama SDK. This code snippet demonstrates how to send a simple question to the AI model and receive a response.
+Let's see a practical example of using the Ollama SDK. This code snippet demonstrates how to send a simple question to the AI model and receive a response.
 -->
 
 ---
@@ -320,7 +320,7 @@ for await (const part of response) {
 ```
 
 <!-- 
-Here"s how we can use streaming with the Ollama SDK. This approach allows us to receive and process the AI"s response in real-time, piece by piece, which can significantly improve the perceived responsiveness of your application.
+Here's how we can use streaming with the Ollama SDK. This approach allows us to receive and process the AI's response in real-time, piece by piece, which can significantly improve the perceived responsiveness of your application.
 -->
 
 ---
@@ -338,7 +338,7 @@ https://sdk.vercel.ai
 
 
 <!-- 
-Now, let"s shift our focus to the Vercel AI SDK. This toolkit provides a higher level of abstraction for working with AI models, making it even easier to integrate AI capabilities into your applications.
+Now, let's shift our focus to the Vercel AI SDK. This toolkit provides a higher level of abstraction for working with AI models, making it even easier to integrate AI capabilities into your applications.
 -->
 
 ---
@@ -350,7 +350,7 @@ url: https://sdk.vercel.ai/docs/introduction
 [Vercel SDK](https://sdk.vercel.ai/docs/introduction)
 
 <!-- 
-Here"s the documentation for the Vercel AI SDK. It"s a comprehensive resource that we"ll be referring to throughout our discussion. I encourage you to explore it further after this presentation.
+Here's the documentation for the Vercel AI SDK. It's a comprehensive resource that we'll be referring to throughout our discussion. I encourage you to explore it further after this presentation.
 -->
 
 ---
@@ -370,7 +370,7 @@ GOOGLE_GENERATIVE_AI_API_KEY="YOUR_KEY"
 ```
 
 <!-- 
-Let"s start with a practical example using Google"s Gemini AI. First, we"ll install the necessary package and set up our environment variables. This setup process is crucial for securely connecting to the AI service.
+Let's start with a practical example using Google's Gemini AI. First, we'll install the necessary package and set up our environment variables. This setup process is crucial for securely connecting to the AI service.
 -->
 
 ---
@@ -403,7 +403,7 @@ console.log(result.text);
 
 
 <!-- 
-Here"s a basic example of using the AI SDK with Google"s Gemini model. We"re setting up the AI, sending a prompt, and logging the response. This demonstrates how straightforward it is to interact with an AI model using the SDK.
+Here's a basic example of using the AI SDK with Google's Gemini model. We're setting up the AI, sending a prompt, and logging the response. This demonstrates how straightforward it is to interact with an AI model using the SDK.
 -->
 
 
@@ -515,7 +515,7 @@ console.log(result.text);
 </div>
 
 <!-- 
-The AI SDK also supports working with images. In this example, we"re asking the AI to describe an image. This capability opens up many possibilities for applications involving visual content analysis.
+The AI SDK also supports working with images. In this example, we're asking the AI to describe an image. This capability opens up many possibilities for applications involving visual content analysis.
 -->
 
 ---
@@ -580,7 +580,7 @@ type Result = z.infer<typeof schema>;
 ```
 
 <!-- 
-The AI SDK also allows us to generate structured objects. This is particularly useful when you need specific data formats from the AI"s response. Here, we"re using Zod to define a schema for a recipe, which the AI will then generate.
+The AI SDK also allows us to generate structured objects. This is particularly useful when you need specific data formats from the AI's response. Here, we're using Zod to define a schema for a recipe, which the AI will then generate.
 -->
 
 
@@ -633,7 +633,7 @@ console.log(result.toolResults);
   -->
 
 <!-- 
-The AI SDK also supports the use of tools, which allow the AI to interact with external data or functions. In this example, we"re creating a weather tool that the AI can use to get weather information for a specific location.
+The AI SDK also supports the use of tools, which allow the AI to interact with external data or functions. In this example, we're creating a weather tool that the AI can use to get weather information for a specific location.
 -->
 ---
 hideInToc: true
@@ -733,7 +733,7 @@ level: 3
 - [browserbase](https://github.com/browserbase/js-sdk?tab=readme-ov-file#vercel-ai-sdk-integration) - Browser tool that runs a headless browser
 
 <!-- 
-The examples we"ve seen so far are just the beginning. As you delve deeper into AI integration, you can explore more advanced concepts like creating agents, defining complex tasks, incorporating real-time data, and connecting to various external APIs. The possibilities are vast and exciting.
+The examples we've seen so far are just the beginning. As you delve deeper into AI integration, you can explore more advanced concepts like creating agents, defining complex tasks, incorporating real-time data, and connecting to various external APIs. The possibilities are vast and exciting.
  -->
 
 ---
@@ -750,7 +750,7 @@ It works with multiple UI frameworks, like React, Solid, Vue, and Svelte.
 </div>
 
 <!-- 
-Now, let"s shift our focus to the UI aspects of AI integration. The AI SDK provides components and hooks that make it easy to create interactive AI-powered interfaces in your React applications. We"ll explore how to build chat interfaces, completion components, and other AI-driven UI elements. It supported in multiple UI frameworks, like React, Solid, Vue, and Svelte. Notice that at this time most tools functionality is available only in React. https://sdk.vercel.ai/docs/ai-sdk-ui/overview#ui-framework-support
+Now, let's shift our focus to the UI aspects of AI integration. The AI SDK provides components and hooks that make it easy to create interactive AI-powered interfaces in your React applications. We'll explore how to build chat interfaces, completion components, and other AI-driven UI elements. It supported in multiple UI frameworks, like React, Solid, Vue, and Svelte. Notice that at this time most tools functionality is available only in React. https://sdk.vercel.ai/docs/ai-sdk-ui/overview#ui-framework-support
 -->
 
 ---
@@ -885,10 +885,10 @@ console.log(iterator.next()); // { value: undefined, done: true }
 ```
 
 <!-- 
-We need to introduce the concept of generator functions because it"s used when we want to create generativeUI.
+We need to introduce the concept of generator functions because it's used when we want to create generativeUI.
 We define a generator with function*.
 
-### Here"s how it works: 
+### Here's how it works: 
 
 Normally, when you write a function in JavaScript, it runs from start to finish each time you call it. But a generator function is special because it can pause its execution and then pick up where it left off later.
 
@@ -923,9 +923,10 @@ layout: two-cols-header
 
 ::left::
 
-```tsx {all|2|8|9-20|14-18|all}
+```tsx {all|3|9|10-21|15-19|all}
 // actions.tsx
 "use server";
+import { streamUI } from "ai/rsc";
 
 export async function streamComponent() {
   const result = await streamUI({
@@ -967,10 +968,10 @@ First of all - we have a server action here.
 
 Server Actions are asynchronous functions that are executed on the server. They can be used in Server and Client Components to handle form submissions and data mutations in Next.js applications.
 
-It"s like having a fetch client / trpc without the validations. We define them with `actions.tsx` and and use top-level `use server`;
+It's like having a fetch client / trpc without the validations. We define them with `actions.tsx` and and use top-level `use server`;
 
 
-Here we call `streamUI` which is like `generateText`. The text value renders the value of the generated tokens from the model response. Rendering JSX from the server is done by using a tool (like before) - which the model decide to call. As a reminder - a tool is just a function call. But now we can define the parameters as props, and return JSX instead. Every time we want to `await` - we don't want to block the stream - so we yield the value - in this case we yield the `<LoadingComponent>` then we fetch the weather data and return it when it"s ready.
+Here we call `streamUI` which is like `generateText`. The text value renders the value of the generated tokens from the model response. Rendering JSX from the server is done by using a tool (like before) - which the model decide to call. As a reminder - a tool is just a function call. But now we can define the parameters as props, and return JSX instead. Every time we want to `await` - we don't want to block the stream - so we yield the value - in this case we yield the `<LoadingComponent>` then we fetch the weather data and return it when it's ready.
 
 
 -->
@@ -1156,7 +1157,7 @@ layout: two-cols-header
 
 
 <!-- 
-An exciting development in the AI space is Chrome"s experimental built-in AI provider. This feature, available in Chrome 127, allows developers to access AI capabilities directly through the browser. Let"s look at some early reactions and potential implications of this technology.
+An exciting development in the AI space is Chrome"s experimental built-in AI provider. This feature, available in Chrome 127, allows developers to access AI capabilities directly through the browser. Let's look at some early reactions and potential implications of this technology.
 -->
 ---
 hideInToc: true
@@ -1209,7 +1210,7 @@ console.log(result.text);
 
 
 <!-- 
-Let"s look at a practical example of using Chrome"s built-in AI provider. This code demonstrates how to generate text using the Chrome AI, showcasing the simplicity and power of browser-based AI capabilities.
+Let's look at a practical example of using Chrome"s built-in AI provider. This code demonstrates how to generate text using the Chrome AI, showcasing the simplicity and power of browser-based AI capabilities.
 -->
 
 ---
@@ -1242,7 +1243,7 @@ hide: true
 <Tweet id="1727731541781152035" scale="0.65" />
 
 <!-- 
-Throughout this presentation, we"ve covered a lot of ground. Here"s a tweet that teach you a little bit more about the magic of AI. It"s not related to the coding, but I"m highly recommend to watch it in order to unserstand the power of AI.
+Throughout this presentation, we've covered a lot of ground. Here's a tweet that teach you a little bit more about the magic of AI. It's not related to the coding, but I'm highly recommend to watch it in order to unserstand the power of AI.
 -->
 
 ---
@@ -1272,7 +1273,7 @@ layout: end
 - <mdi-blog /> [Blog post](https://nirtamir.com)
 
 <!-- 
-Thank you all for your attention! I hope this presentation has given you insights into how to add AI capabilities to your React apps using the Vercel AI SDK. Remember, the field of AI is rapidly evolving, and there"s always more to learn. Feel free to reach out if you have any questions or want to discuss AI integration further.
+Thank you all for your attention! I hope this presentation has given you insights into how to add AI capabilities to your React apps using the Vercel AI SDK. Remember, the field of AI is rapidly evolving, and there's always more to learn. Feel free to reach out if you have any questions or want to discuss AI integration further.
 -->
 
 ---
