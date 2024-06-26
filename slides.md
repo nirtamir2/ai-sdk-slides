@@ -92,10 +92,10 @@ layout: quote
 class: text-center text-balance
 ---
 
-# You don"t need to be a Data Scientist to be an AI Engineer
+# You don't need to be a Data Scientist to be an AI Engineer
 
 <!-- 
-Now, I want to start with an important message: You don"t need to be a data scientist to work with AI. As developers, we can leverage AI through APIs and SDKs, making it accessible for us to build intelligent applications.
+Now, I want to start with an important message: You don't need to be a data scientist to work with AI. As developers, we can leverage AI through APIs and SDKs, making it accessible for us to build intelligent applications.
 -->
 
 ---
@@ -629,7 +629,7 @@ console.log(result.toolResults);
 ```
   <!-- toolChoice: "required", // force the model to call a tool 
   
-    temperature: 0, // don"t try to be creative here
+    temperature: 0, // don't try to be creative here
   -->
 
 <!-- 
@@ -898,7 +898,7 @@ Iterator Object: When you call a generator function, it doesn’t execute immedi
 
 ### Explanation
 
-Calling `countToThree`: When you call `countToThree`, it returns an iterator object and doesn"t start executing the function.
+Calling `countToThree`: When you call `countToThree`, it returns an iterator object and doesn't start executing the function.
 
 - `iterator.next()`: Calling `next()` starts the generator. It runs until it hits the first `yield`, returning the value after `yield`. The done property indicates if the generator has finished running.
 - Resuming Execution: Each subsequent call to `next()` resumes execution from where it left off, running until the next `yield`.
@@ -970,7 +970,7 @@ Server Actions are asynchronous functions that are executed on the server. They 
 It"s like having a fetch client / trpc without the validations. We define them with `actions.tsx` and and use top-level `use server`;
 
 
-Here we call `streamUI` which is like `generateText`. The text value renders the value of the generated tokens from the model response. Rendering JSX from the server is done by using a tool (like before) - which the model decide to call. As a reminder - a tool is just a function call. But now we can define the parameters as props, and return JSX instead. Every time we want to `await` - we don"t want to block the stream - so we yield the value - in this case we yield the `<LoadingComponent>` then we fetch the weather data and return it when it"s ready.
+Here we call `streamUI` which is like `generateText`. The text value renders the value of the generated tokens from the model response. Rendering JSX from the server is done by using a tool (like before) - which the model decide to call. As a reminder - a tool is just a function call. But now we can define the parameters as props, and return JSX instead. Every time we want to `await` - we don't want to block the stream - so we yield the value - in this case we yield the `<LoadingComponent>` then we fetch the weather data and return it when it"s ready.
 
 
 -->
@@ -1139,7 +1139,7 @@ export const AI = createAI<Array<ServerMessage>, Array<ClientMessage>>({
 
 ---
 
-# The futue
+# The future
 
 ---
 hideInToc: true
@@ -1246,6 +1246,19 @@ Throughout this presentation, we"ve covered a lot of ground. Here"s a tweet that
 -->
 
 ---
+hideInToc: true
+---
+
+# Further Reading
+
+- Security
+- Rate limits
+- Prompt engineering
+- Langchain
+- RAG
+- Agents
+
+---
 layout: end
 ---
 
@@ -1258,20 +1271,9 @@ layout: end
 - <mdi-presentation /> [Slides](https://github.com/nirtamir2)
 - <mdi-blog /> [Blog post](https://nirtamir.com)
 
-
 <!-- 
 Thank you all for your attention! I hope this presentation has given you insights into how to add AI capabilities to your React apps using the Vercel AI SDK. Remember, the field of AI is rapidly evolving, and there"s always more to learn. Feel free to reach out if you have any questions or want to discuss AI integration further.
 -->
-
----
-
-# Further Reading
-- Security
-- Rate limits
-- Prompt engineering
-- Langchain
-- RAG
-- Agents
 
 ---
 transition: slide-up
