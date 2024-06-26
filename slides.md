@@ -18,6 +18,7 @@ transition: slide-left
 # enable MDC Syntax: https://sli.dev/guide/syntax#mdc-syntax
 mdc: true
 hideInToc: true
+download: true
 ---
 <!-- NOTE: ⌘ Command + Brightness Down to toggle screen mirroring -->
 <!-- TODO: to configure shortcut to open chrome canary -->
@@ -105,7 +106,7 @@ hideInToc: true
 
 <a href="https://www.latent.space/p/ai-engineer">The Rise of the AI Engineer</a>
 
-![Swyx AI engineer](swyx-ai-engineer.jpeg)
+![Swyx AI engineer](/swyx-ai-engineer.jpeg)
 
 <!-- 
 Let"s talk about what an AI Engineer does. As this image shows, AI Engineers work on the application side of AI, using APIs and SDKs to integrate AI capabilities into software. We"re not training models, but rather using them to solve real-world problems.
@@ -119,7 +120,7 @@ hideInToc: true
 
 <a href="https://www.latent.space/p/hiring">Hiring AI Engineer</a>
 
-![ai-engineer-skills](ai-engineer-skills.png)
+![ai-engineer-skills](/ai-engineer-skills.png)
 
 
 <!-- 
@@ -332,7 +333,7 @@ https://sdk.vercel.ai
 
 
 <div class="flex items-center justify-center">                    
-  <img src="ai-overview.png" alt="ai-overview" width="500"/>
+  <img src="/ai-overview.png" alt="ai-overview" width="500"/>
 </div>
 
 
@@ -472,7 +473,7 @@ const result = await generateText({
 ````
 
 ::right::
-![ai-sdk-providers](ai-sdk-providers.png)
+![ai-sdk-providers](/ai-sdk-providers.png)
 
 <div class="h-50">
 </div> 
@@ -745,7 +746,7 @@ layout: center
 It works with multiple UI frameworks, like React, Solid, Vue, and Svelte.
 
 <div class="flex items-center justify-center pt-16">                    
-  <img src="sdk-ui-frameworks.png" alt="sdk-ui-frameworks" width="500"/>
+  <img src="/sdk-ui-frameworks.png" alt="sdk-ui-frameworks" width="500"/>
 </div>
 
 <!-- 
@@ -828,7 +829,7 @@ layout: center
 
 Creating generative UI with React Server Components
 
-<img src="generative-ui.png" alt="generative-ui" width="500"/>
+<img src="/generative-ui.png" alt="generative-ui" width="500"/>
 
 
 <!-- 
