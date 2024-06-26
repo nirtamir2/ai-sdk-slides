@@ -1269,8 +1269,8 @@ layout: end
 - <mdi-github /> [@nirtamir2](https://github.com/nirtamir2)
 - <mdi-twitter /> [@NirTamir](https://twitter.com/NirTamir)
 - <mdi-linkedin /> [@nirtamir2](https://linkedin.com/in/nirtamir2)
-- <mdi-presentation /> [Slides](https://github.com/nirtamir2)
-- <mdi-blog /> [Blog post](https://nirtamir.com)
+- <mdi-presentation /> [Slides](https://github.com/nirtamir2/ai-sdk-slides)
+- <mdi-blog /> [Blog post](https://nirtamir.com/articles/adding-ai-capabilities-to-javascript-app)
 
 <!-- 
 Thank you all for your attention! I hope this presentation has given you insights into how to add AI capabilities to your React apps using the Vercel AI SDK. Remember, the field of AI is rapidly evolving, and there's always more to learn. Feel free to reach out if you have any questions or want to discuss AI integration further.
