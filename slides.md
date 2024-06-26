@@ -192,7 +192,7 @@ hideInToc: true
 
 It has the same structure as OpenAI API hosted at http://localhost:11434
 
-```js {monaco-run} {autorun:false}
+```js {monaco-run}
 const response = await fetch("http://localhost:11434/v1/chat/completions", {
   method: "POST",
   body: JSON.stringify({
@@ -217,7 +217,7 @@ monacoRunAdditionalDeps:
 ---
 # Ollama is compatible with OpenAI interface
 
-```ts {monaco-run} {autorun:false}
+```ts {monaco-run}
 import { OpenAI } from "openai"
 
 const openai = new OpenAI({
@@ -283,7 +283,7 @@ monacoRunAdditionalDeps:
 ---
 # Calling Ollama via SDK
 https://github.com/ollama/ollama-js
-```js {monaco-run} {autorun:false}
+```js {monaco-run}
 import ollama from "ollama/browser"
 
 const response = await ollama.chat({
@@ -306,7 +306,7 @@ monacoRunAdditionalDeps:
 
 https://github.com/ollama/ollama-js
 
-```js {monaco-run} {autorun:false}
+```js {monaco-run}
 import ollama from "ollama/browser"
 
 const response = await ollama.chat({
@@ -383,7 +383,7 @@ monacoRunAdditionalDeps:
 
 # AI SDK example
 
-```ts {monaco-run} {autorun:false}
+```ts {monaco-run}
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { generateText } from "ai";
 import { env } from "./env";
@@ -491,7 +491,7 @@ monacoRunAdditionalDeps:
 
 # AI SDK Image example
 
-```ts {monaco-run} {autorun:false}
+```ts {monaco-run}
 import { generateText } from "ai";
 import { google } from "./google-model";
 
@@ -537,7 +537,7 @@ monacoRunAdditionalDeps:
 
 # AI SDK Object example
 ::left::
-```ts {monaco-run} {autorun:false}
+```ts {monaco-run}
 import { generateObject } from "ai";
 import { google } from "./google-model";
 import { schema } from "./schema";
@@ -655,7 +655,6 @@ const result = await generateText({
         location: z.string().describe("The location to get the weather for"),
       }),
       execute: async ({ location }) => ({
-        //               we can infer the type of the location
         location,
         temperature: Math.floor(Math.random() * 30) + 7,
       }),
@@ -922,11 +921,9 @@ layout: two-cols-header
 # Stream UI - server action
 
 ::left::
-
-```tsx {all|3|9|10-21|15-19|all}
+```tsx {all|2|8|11-20|14-18|all}
 // actions.tsx
 "use server";
-import { streamUI } from "ai/rsc";
 
 export async function streamComponent() {
   const result = await streamUI({
@@ -947,7 +944,6 @@ export async function streamComponent() {
       },
     },
   });
-
   return result.value;
 }
 ```
@@ -1167,7 +1163,7 @@ layout: two-cols-header
 # Chrome 127 Experimental Built In AI Provider
 
 ::left::
-```ts {monaco-run} {autorun:false}
+```ts {monaco-run}
 const session = await window.ai.createTextSession();
 const result = await session.prompt("Tell me a joke.");
 console.log(result)
@@ -1196,7 +1192,7 @@ https://developer.chrome.com/docs/ai/built-in
 
 [chrome-ai](https://github.com/jeasonstudio/chrome-ai)
 
-```ts {monaco-run} {autorun:false}
+```ts {monaco-run}
 import { chromeai } from "chrome-ai";
 import { generateText } from "ai";
 
