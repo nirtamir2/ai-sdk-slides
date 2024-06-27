@@ -55,6 +55,7 @@ Welcome everyone! I'm excited to talk about adding AI capabilities to your React
 
 ---
 hideInToc: true
+hide: true
 ---
 
 # TOC
@@ -921,7 +922,7 @@ layout: two-cols-header
 # Stream UI - server action
 
 ::left::
-```tsx {all|2|8|11-20|14-18|all}
+```tsx {all|2|8|10-20|14-19|all}
 // actions.tsx
 "use server";
 
@@ -1211,18 +1212,20 @@ Let's look at a practical example of using Chrome"s built-in AI provider. This c
 
 ---
 hideInToc: true
+layout: two-cols-header
 ---
 
-# WebGPU enables to run more AI models in the browser
+# WebGPU
+Boost performane and allow running AI models in the browser
+::left::
+<Tweet id="1788177160227660079" scale="0.45" />
 
-<Tweet id="1788177160227660079" scale="0.65" />
-
+::right::
+<Tweet id="1805990110065803492" scale="0.45" />
 
 <!-- 
 WebGPU is a game-changer for running AI models in the browser. It provides the necessary performance boost to execute complex AI tasks client-side, opening up new possibilities for responsive and privacy-preserving AI applications.
 -->
-
-
 
 ---
 hide: true
@@ -1275,6 +1278,7 @@ Thank you all for your attention! I hope this presentation has given you insight
 ---
 transition: slide-up
 hideInToc: true
+hide: true
 ---
 
 # Glossary
